@@ -11,6 +11,7 @@ import net.idrok.shopping.entity.BuyurtmaMahsulot;
 import net.idrok.shopping.repository.BuyurtmaMahsulotRepository;
 
 //commit qoshildi
+//commit qoshildidasda
 @Service
 public class BuyurtmaMahsulotService {
     @Autowired
