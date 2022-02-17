@@ -19,8 +19,19 @@ public class Mahsulot {
 
     @ManyToOne
     private Chegirma chegirma;
+    private MahsulotKategoriya mahsulotKategoriya;
 
     private String info;
+
+    
+
+    public MahsulotKategoriya getMahsulotKategoriya() {
+        return mahsulotKategoriya;
+    }
+
+    public void setMahsulotKategoriya(MahsulotKategoriya mahsulotKategoriya) {
+        this.mahsulotKategoriya = mahsulotKategoriya;
+    }
 
     public String getNom() {
         return nom;

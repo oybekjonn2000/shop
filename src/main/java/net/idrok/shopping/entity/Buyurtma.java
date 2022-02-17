@@ -18,7 +18,7 @@ public class Buyurtma{
 
 
     @ManyToOne
-    private Mijoz mijoz;
+    private User mijoz;
 
     private String miqdor;
 
@@ -45,11 +45,11 @@ public class Buyurtma{
         this.id = id;
     }
 
-    public Mijoz getMijoz() {
+    public User getMijoz() {
         return mijoz;
     }
 
-    public void setMijoz(Mijoz mijoz) {
+    public void setMijoz(User mijoz) {
         this.mijoz = mijoz;
     }
 

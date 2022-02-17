@@ -6,36 +6,36 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import net.idrok.shopping.entity.Mijoz;
-import net.idrok.shopping.repository.MijozRepository;
+import net.idrok.shopping.entity.User;
+import net.idrok.shopping.repository.UserRepository;
 
 @Service
-public class MijozService {
+public class UserService {
 
     @Autowired
-    MijozRepository mijozRepository;
+    UserRepository mijozRepository;
 
-    public Page<Mijoz> getAll(String key, Pageable pageable) {
+    public Page<User> getAll(String key, Pageable pageable) {
         return mijozRepository.findAllByUsernameOrPasswordContainingIgnoreCase(key, key, pageable);
     }
 
-    public Mijoz getById(Long id) {
+    public User getById(Long id) {
         return mijozRepository.findById(id).get();
     }
 
-    public Mijoz create(Mijoz mj) {
+    public User create(User mj) {
         if (mj.getId() == null)
        return     mijozRepository.save(mj);
         throw new RuntimeException("id null bolishi kerak");
     }
 
-    public Mijoz update(Mijoz mj) {
+    public User update(User mj) {
         if (mj.getId() != null)
          return   mijozRepository.save(mj);
         throw new RuntimeException("id null bolmasligi kerak");
     }
 
-    public void delete(Mijoz mj) {
+    public void delete(User mj) {
         mijozRepository.delete(mj);
     }
 

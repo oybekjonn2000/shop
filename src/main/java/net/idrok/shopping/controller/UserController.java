@@ -15,42 +15,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import net.idrok.shopping.entity.Mijoz;
-import net.idrok.shopping.service.MijozService;
+import net.idrok.shopping.entity.User;
+import net.idrok.shopping.service.UserService;
 
 @RestController
 @RequestMapping("/api/mijoz")
 @CrossOrigin(maxAge = 3600)
-public class MijozController {
+public class UserController {
 
 
     @Autowired
-    MijozService mijozService;
+    UserService userService;
 
     @GetMapping()
-    public ResponseEntity<Page<Mijoz>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
+    public ResponseEntity<Page<User>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(mijozService.getAll(key, pageable));
+        return ResponseEntity.ok(userService.getAll(key, pageable));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Mijoz> getById(@PathVariable Long id){
-        return ResponseEntity.ok(mijozService.getById(id));
+    public ResponseEntity<User> getById(@PathVariable Long id){
+        return ResponseEntity.ok(userService.getById(id));
     }
 
     @PostMapping()
-    public ResponseEntity<Mijoz> create(@RequestBody Mijoz mj){
-        return ResponseEntity.ok( mijozService.create(mj));
+    public ResponseEntity<User> create(@RequestBody User mj){
+        return ResponseEntity.ok( userService.create(mj));
     }
 
     @PutMapping()
-    public ResponseEntity<Mijoz> update(@RequestBody Mijoz mj){
-        return ResponseEntity.ok(mijozService.update(mj));
+    public ResponseEntity<User> update(@RequestBody User mj){
+        return ResponseEntity.ok(userService.update(mj));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        mijozService.deleteById(id);
+        userService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
