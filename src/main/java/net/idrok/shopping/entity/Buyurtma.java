@@ -18,7 +18,7 @@ public class Buyurtma{
 
 
     @ManyToOne
-    private User mijoz;
+    private User user;
 
     private String miqdor;
 
@@ -26,16 +26,6 @@ public class Buyurtma{
     private Tulov tulov;
 
     private String info;
-
-    
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
 
     public Long getId() {
         return id;
@@ -45,12 +35,20 @@ public class Buyurtma{
         this.id = id;
     }
 
-    public User getMijoz() {
-        return mijoz;
+    public String getNom() {
+        return nom;
     }
 
-    public void setMijoz(User mijoz) {
-        this.mijoz = mijoz;
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getMiqdor() {
@@ -76,6 +74,8 @@ public class Buyurtma{
     public void setInfo(String info) {
         this.info = info;
     }
+
+    
 
     
  

@@ -1,12 +1,10 @@
 package net.idrok.shopping.entity;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
-
-
 
 @Entity
 public class Mahsulot {
@@ -14,16 +12,15 @@ public class Mahsulot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
-    private String kategoriya;
+   
     private String narx;
 
     @ManyToOne
     private Chegirma chegirma;
+
     private MahsulotKategoriya mahsulotKategoriya;
 
     private String info;
-
-    
 
     public MahsulotKategoriya getMahsulotKategoriya() {
         return mahsulotKategoriya;
@@ -49,13 +46,7 @@ public class Mahsulot {
         this.id = id;
     }
 
-    public String getKategoriya() {
-        return kategoriya;
-    }
 
-    public void setKategoriya(String kategoriya) {
-        this.kategoriya = kategoriya;
-    }
 
     public String getNarx() {
         return narx;

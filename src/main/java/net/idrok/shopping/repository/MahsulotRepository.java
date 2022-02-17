@@ -1,5 +1,7 @@
 package net.idrok.shopping.repository;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -13,14 +15,14 @@ import net.idrok.shopping.entity.MahsulotKategoriya;
 public interface MahsulotRepository extends JpaRepository<Mahsulot, Long> {
     Page<Mahsulot> findByNomOrInfoContainingIgnoreCase(String k1, String k2,  Pageable pageable);
 
-    Page<Mahsulot> findByMahsulotKategoriya(MahsulotKategoriya mahsulotKategoriya);
+    List<Mahsulot> findByMahsulotKategoriya(MahsulotKategoriya mahsulotKategoriya);
 
-    default Page<Mahsulot> findByMahsulotKategoriyaKOMPYUTER(){
+    default List<Mahsulot> findByMahsulotKategoriyaKOMPYUTER(){
        return this.findByMahsulotKategoriya(MahsulotKategoriya.KOMPYUTER);
     }
 
 
-    @Query("FROM Mahsulot m WHERE m.mahsulotKategoriya = net.idrok.tester.entity.MahsulotKategoriya.TELEFON")
-    Page<Mahsulot> findbyMahsulotKategoriyaTELEFON();
+    @Query("FROM Mahsulot m WHERE m.mahsulotKategoriya = net.idrok.shopping.entity.MahsulotKategoriya.ASCESSUAR")
+    List<Mahsulot> findbyMahsulotKategoriyaASCESSUAR();
 
 }
