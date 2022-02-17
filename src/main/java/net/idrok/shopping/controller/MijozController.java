@@ -15,42 +15,42 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
-import net.idrok.shopping.entity.User;
-import net.idrok.shopping.service.UserService;
+import net.idrok.shopping.entity.Mijoz;
+import net.idrok.shopping.service.MijozService;
 
 @RestController
 @RequestMapping("/api/mijoz")
 @CrossOrigin(maxAge = 3600)
-public class UserController {
+public class MijozController {
 
 
     @Autowired
-    UserService userService;
+    MijozService mjService;
 
     @GetMapping()
-    public ResponseEntity<Page<User>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
+    public ResponseEntity<Page<Mijoz>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(userService.getAll(key, pageable));
+        return ResponseEntity.ok(mjService.getAll(key, pageable));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getById(@PathVariable Long id){
-        return ResponseEntity.ok(userService.getById(id));
+    public ResponseEntity<Mijoz> getById(@PathVariable Long id){
+        return ResponseEntity.ok(mjService.getById(id));
     }
 
     @PostMapping()
-    public ResponseEntity<User> create(@RequestBody User mj){
-        return ResponseEntity.ok( userService.create(mj));
+    public ResponseEntity<Mijoz> create(@RequestBody Mijoz mj){
+        return ResponseEntity.ok( mjService.create(mj));
     }
 
     @PutMapping()
-    public ResponseEntity<User> update(@RequestBody User mj){
-        return ResponseEntity.ok(userService.update(mj));
+    public ResponseEntity<Mijoz> update(@RequestBody Mijoz mj){
+        return ResponseEntity.ok(mjService.update(mj));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        userService.deleteById(id);
+        mjService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
