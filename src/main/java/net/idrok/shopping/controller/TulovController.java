@@ -19,7 +19,7 @@ import net.idrok.shopping.service.TulovService;
 @RestController
 @RequestMapping("/api/tulov")
 @CrossOrigin(maxAge = 3600)
-public class TulovContolller {
+public class TulovController {
 
 
     @Autowired
