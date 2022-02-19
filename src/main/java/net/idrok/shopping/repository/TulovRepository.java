@@ -24,5 +24,6 @@ public interface TulovRepository extends JpaRepository<Tulov, Long> {
 
     @Query("FROM Tulov t WHERE t.tulovTur = net.idrok.shopping.entity.TulovTur.HUMO")
     List<Tulov> findbyTulovTurHUMO();
+    //
 
 }
