@@ -17,12 +17,12 @@ public interface TulovRepository extends JpaRepository<Tulov, Long> {
 
     List<Tulov> findByTulovTur(TulovTur tulovTur);
 
-    // default List<Tulov> findByTulovTurUZCARD(){
-    //    return this.findByTulovTur(TulovTur.UZCARD);
-    // }
+    default List<Tulov> findByTulovTurUZCARD(){
+       return this.findByTulovTur(TulovTur.UZCARD);
+    }
 
 
-    // @Query("FROM Tulov m WHERE m.tulovTur = net.idrok.shopping.entity.TulovTur.NAQD")
-    // List<Tulov> findbyTulovTurNAQD();
+    @Query("FROM Tulov t WHERE t.tulovTur = net.idrok.shopping.entity.TulovTur.HUMO")
+    List<Tulov> findbyTulovTurHUMO();
 
 }
