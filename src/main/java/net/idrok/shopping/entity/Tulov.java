@@ -15,14 +15,11 @@ public class Tulov {
     private String nom;
 
     private String status;
-    private TulovTur tulovTur;
 
     @Column(unique = true, nullable = false, length = 100)
     private String miqdor;
-
+    private TulovTur tulovTur;
     private String info;
-
-    
 
     public TulovTur getTulovTur() {
         return tulovTur;

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import net.idrok.shopping.entity.Mijoz;
 import net.idrok.shopping.service.MijozService;
+import net.idrok.shopping.service.dto.MijozDTO;
 
 @RestController
 @RequestMapping("/api/mijoz")
@@ -28,23 +29,23 @@ public class MijozController {
     MijozService mjService;
 
     @GetMapping()
-    public ResponseEntity<Page<Mijoz>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
+    public ResponseEntity<Page<MijozDTO>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
         return ResponseEntity.ok(mjService.getAll(key, pageable));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Mijoz> getById(@PathVariable Long id){
+    public ResponseEntity<MijozDTO> getById(@PathVariable Long id){
         return ResponseEntity.ok(mjService.getById(id));
     }
 
     @PostMapping()
-    public ResponseEntity<Mijoz> create(@RequestBody Mijoz mj){
+    public ResponseEntity<MijozDTO> create(@RequestBody Mijoz mj){
         return ResponseEntity.ok( mjService.create(mj));
     }
 
     @PutMapping()
-    public ResponseEntity<Mijoz> update(@RequestBody Mijoz mj){
+    public ResponseEntity<MijozDTO> update(@RequestBody Mijoz mj){
         return ResponseEntity.ok(mjService.update(mj));
     }
 

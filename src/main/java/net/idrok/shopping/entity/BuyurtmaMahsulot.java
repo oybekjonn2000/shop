@@ -20,7 +20,11 @@ public class BuyurtmaMahsulot {
     @OneToOne
     private Mahsulot mahsulot;
 
+
+
     private String info;
+
+    
 
     public Long getId() {
         return id;
