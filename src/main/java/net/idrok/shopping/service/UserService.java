@@ -15,7 +15,7 @@ public class UserService {
     UserRepository userRepository;
 
     public Page<User> getAll(String key, Pageable pageable) {
-        return userRepository.findByUsernameContainingIgnoreCase(key, pageable);
+        return userRepository.findByUsernameOrEmailContainingIgnoreCase(key,key, pageable);
     }
 
     public User getById(Long id) {

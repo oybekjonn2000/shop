@@ -9,7 +9,7 @@ import net.idrok.shopping.entity.Type;
 
 @Repository
 public interface TypeRepository extends JpaRepository<Type, Long> {
-    Page<Type> findByNameContainingIgnoreCase(String k1,  Pageable pageable);
+    Page<Type> findByNameOrInfoContainingIgnoreCase(String k1,String k2, Pageable pageable);
 
     
 

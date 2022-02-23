@@ -14,6 +14,18 @@ public class Type {
     private  Long id;
 
     private String name;
+    private String info;
+
+
+    
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
 
     @ManyToOne(targetEntity = Category.class)
     private Category category;

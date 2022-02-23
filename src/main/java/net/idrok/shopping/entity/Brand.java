@@ -12,6 +12,16 @@ public class Brand {
     private  Long id;
 
     private String name;
+    private String info;
+    
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
 
     public Long getId() {
         return id;

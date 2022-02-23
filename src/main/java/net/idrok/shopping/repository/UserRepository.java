@@ -7,7 +7,7 @@ import net.idrok.shopping.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    Page<User> findByUsernameContainingIgnoreCase(String k1,  Pageable pageable);
+    Page<User> findByUsernameOrEmailContainingIgnoreCase(String k1, String k2, Pageable pageable);
 
     
 }

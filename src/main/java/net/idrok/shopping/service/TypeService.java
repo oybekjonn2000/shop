@@ -17,7 +17,7 @@ public class TypeService {
     TypeRepository typeRepository;
 
     public Page<Type> getAll(String key, Pageable pageable) {
-        return typeRepository.findByNameContainingIgnoreCase(key, pageable);
+        return typeRepository.findByNameOrInfoContainingIgnoreCase(key,key, pageable);
     }
 
     public Type getById(Long id) {

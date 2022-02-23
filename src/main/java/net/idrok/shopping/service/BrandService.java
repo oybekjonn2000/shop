@@ -14,7 +14,7 @@ public class BrandService {
     BrandRepository brandRepository;
 
     public Page<Brand> getAll(String key, Pageable pageable) {
-        return brandRepository.findByNameContainingIgnoreCase(key,  pageable);
+        return brandRepository.findByNameOrInfoContainingIgnoreCase(key, key, pageable);
     }
 
     public Brand getById(Long id) {
