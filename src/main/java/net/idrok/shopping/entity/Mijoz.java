@@ -5,126 +5,108 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Mijoz {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private  Long id;
 
-    @Column(unique = true, nullable = false, length = 100)
     private String ism;
-
-    @Column(unique = true, nullable = false, length = 100)
     private String familiya;
-
-    @Column(unique = true, nullable = false, length = 100)
-    private String sharif;
-
-    @Column(unique = true, nullable = false, length = 100)
-    private String username;
-
-    @Column(unique = true, nullable = false, length = 100)
-    private String password;
-
-    @Column(unique = true, nullable = false, length = 100)
-    private String type;
-
-    @Column(unique = true, nullable = false, length = 100)
-    private String address;
-
-    @Column(unique = true, nullable = false, length = 100)
-    private String email;
-
-    @Column(unique = true, nullable = false, length = 100)
     private String telefon;
 
 
+    private String address;
+    @OneToOne(targetEntity = User.class)
+    private User user;
+
+
+    public Mijoz(Long id, String firstName, String lastName, String phone, String address, User user) {
+        this.id = id;
+        this.ism = firstName;
+        this.familiya = lastName;
+        this.telefon = phone;
+        this.address = address;
+        this.user = user;
+    }
     
 
-    public String getType() {
-        return type;
+
+    public Mijoz() {
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+
 
     public Long getId() {
         return id;
     }
 
+
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getIsm() {
         return ism;
     }
 
+
     public void setIsm(String ism) {
         this.ism = ism;
     }
+
 
     public String getFamiliya() {
         return familiya;
     }
 
+
     public void setFamiliya(String familiya) {
         this.familiya = familiya;
     }
 
-    public String getSharif() {
-        return sharif;
+
+    public String getPhone() {
+        return telefon;
     }
 
-    public void setSharif(String sharif) {
-        this.sharif = sharif;
+
+    public void setPhone(String phone) {
+        this.telefon = phone;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getAddress() {
         return address;
     }
 
+
     public void setAddress(String address) {
         this.address = address;
     }
 
-    public String getEmail() {
-        return email;
+
+    public User getUser() {
+        return user;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getTelefon() {
-        return telefon;
-    }
+    
+    
 
-    public void setTelefon(String telefon) {
-        this.telefon = telefon;
-    }
+    
+
+
 
 
 
     
-
 }

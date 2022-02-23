@@ -1,6 +1,7 @@
 package net.idrok.shopping.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,22 +13,27 @@ public class Mahsulot {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
-   
-    private String narx;
+    private String rang;
+    private Double narx;
+    private String miqdor;
 
     @ManyToOne
     private Chegirma chegirma;
 
-    private MahsulotKategoriya mahsulotKategoriya;
+    @ManyToOne(targetEntity = Brend.class,fetch = FetchType.EAGER)
+    private Brend brend;
+
+    @ManyToOne(targetEntity = Type.class,fetch = FetchType.EAGER)
+    private Type type;
 
     private String info;
 
-    public MahsulotKategoriya getMahsulotKategoriya() {
-        return mahsulotKategoriya;
+    public Long getId() {
+        return id;
     }
 
-    public void setMahsulotKategoriya(MahsulotKategoriya mahsulotKategoriya) {
-        this.mahsulotKategoriya = mahsulotKategoriya;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNom() {
@@ -38,22 +44,28 @@ public class Mahsulot {
         this.nom = nom;
     }
 
-    public Long getId() {
-        return id;
+    public String getRang() {
+        return rang;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setRang(String rang) {
+        this.rang = rang;
     }
 
-
-
-    public String getNarx() {
+    public Double getNarx() {
         return narx;
     }
 
-    public void setNarx(String narx) {
+    public void setNarx(Double narx) {
         this.narx = narx;
+    }
+
+    public String getMiqdor() {
+        return miqdor;
+    }
+
+    public void setMiqdor(String miqdor) {
+        this.miqdor = miqdor;
     }
 
     public Chegirma getChegirma() {
@@ -64,6 +76,22 @@ public class Mahsulot {
         this.chegirma = chegirma;
     }
 
+    public Brend getBrend() {
+        return brend;
+    }
+
+    public void setBrend(Brend brend) {
+        this.brend = brend;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
     public String getInfo() {
         return info;
     }
@@ -72,4 +100,7 @@ public class Mahsulot {
         this.info = info;
     }
 
+    
+
+  
 }
