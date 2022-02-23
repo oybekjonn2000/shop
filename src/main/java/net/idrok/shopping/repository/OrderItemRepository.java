@@ -9,6 +9,6 @@ import net.idrok.shopping.entity.OrderItem;
 
 @Repository
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
-    Page<OrderItem> findByProductProductNameOrOrderNameContainingIgnoreCase(String k1, String k2, Pageable pageable);
+    Page<OrderItem> findByProductNameOrOrderNameContainingIgnoreCase(String k1, String k2, Pageable pageable);
 
 }

@@ -18,7 +18,7 @@ public class OrderItemService {
     OrderItemRepository orderItemRepository;
 
     public Page<OrderItem> getAll(String key, Pageable pageable) {
-        return orderItemRepository.findByProductProductNameOrOrderNameContainingIgnoreCase(key, key, pageable);
+        return orderItemRepository.findByProductNameOrOrderNameContainingIgnoreCase(key, key, pageable);
     }
 
     public OrderItem getById(Long id) {

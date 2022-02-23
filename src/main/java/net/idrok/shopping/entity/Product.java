@@ -12,8 +12,8 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String productName;
-    private String productColor;
+    private String name;
+    private String color;
     private Double price;
     private String quantity;
 
@@ -36,20 +36,20 @@ public class Product {
         this.id = id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getProductColor() {
-        return productColor;
+    public String getColor() {
+        return color;
     }
 
-    public void setProductColor(String productColor) {
-        this.productColor = productColor;
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public Double getPrice() {
@@ -100,6 +100,9 @@ public class Product {
         this.info = info;
     }
 
+    
+
+    
 
     
 
