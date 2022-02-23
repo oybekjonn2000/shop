@@ -14,33 +14,33 @@ import net.idrok.shopping.repository.TypeRepository;
 public class TypeService {
     
     @Autowired
-    TypeRepository typeREPO;
+    TypeRepository typeRepository;
 
     public Page<Type> getAll(String key, Pageable pageable) {
-        return typeREPO.findByNameContainingIgnoreCase(key, pageable);
+        return typeRepository.findByNameContainingIgnoreCase(key, pageable);
     }
 
     public Type getById(Long id) {
-        return typeREPO.findById(id).get();
+        return typeRepository.findById(id).get();
     }
 
     public Type create(Type t) {
         if (t.getId() == null)
-            return typeREPO.save(t);
+            return typeRepository.save(t);
         throw new RuntimeException("id null bolishi kerak");
     }
 
     public Type update(Type t) {
         if (t.getId() != null)
-            return typeREPO.save(t);
+            return typeRepository.save(t);
         throw new RuntimeException("id null bolmasligi kerak");
     }
 
     public void delete(Type t) {
-        typeREPO.delete(t);
+        typeRepository.delete(t);
     }
 
     public void deleteById(Long mjId) {
-        typeREPO.deleteById(mjId);
+        typeRepository.deleteById(mjId);
     }
 }

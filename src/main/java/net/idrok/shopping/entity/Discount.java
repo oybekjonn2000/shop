@@ -1,22 +1,25 @@
 package net.idrok.shopping.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
 
 @Entity
-public class Type {
+public class Discount {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
 
+    @Column(unique = true, nullable = false, length = 100)
     private String name;
 
-    @ManyToOne(targetEntity = Category.class)
-    private Category category;
+    private Integer percent;
+
+    private String info;
 
     public Long getId() {
         return id;
@@ -34,18 +37,29 @@ public class Type {
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
+    public Integer getPercent() {
+        return percent;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setPercent(Integer percent) {
+        this.percent = percent;
     }
 
-    
-    
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
 
     
 
+  
+   
 
+    
+
+    
 }

@@ -12,33 +12,33 @@ import net.idrok.shopping.repository.UserRepository;
 public class UserService {
     
     @Autowired
-    UserRepository userREPO;
+    UserRepository userRepository;
 
     public Page<User> getAll(String key, Pageable pageable) {
-        return userREPO.findByUsernameContainingIgnoreCase(key, pageable);
+        return userRepository.findByUsernameContainingIgnoreCase(key, pageable);
     }
 
     public User getById(Long id) {
-        return userREPO.findById(id).get();
+        return userRepository.findById(id).get();
     }
 
     public User create(User t) {
         if (t.getId() == null)
-            return userREPO.save(t);
+            return userRepository.save(t);
         throw new RuntimeException("id null bolishi kerak");
     }
 
     public User update(User t) {
         if (t.getId() != null)
-            return userREPO.save(t);
+            return userRepository.save(t);
         throw new RuntimeException("id null bolmasligi kerak");
     }
 
     public void delete(User t) {
-        userREPO.delete(t);
+        userRepository.delete(t);
     }
 
     public void deleteById(Long mjId) {
-        userREPO.deleteById(mjId);
+        userRepository.deleteById(mjId);
     }
 }

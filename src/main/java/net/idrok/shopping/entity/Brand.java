@@ -4,19 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
 
 @Entity
-public class Type {
+public class Brand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  Long id;
 
     private String name;
-
-    @ManyToOne(targetEntity = Category.class)
-    private Category category;
 
     public Long getId() {
         return id;
@@ -34,18 +29,6 @@ public class Type {
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     
-    
-
-    
-
-
 }

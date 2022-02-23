@@ -1,22 +1,27 @@
 package net.idrok.shopping.entity;
 
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 @Entity
-public class Type {
+public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
 
+
+    @Column(unique = true, nullable = false, length = 50)
     private String name;
 
-    @ManyToOne(targetEntity = Category.class)
-    private Category category;
+    private String info;
 
     public Long getId() {
         return id;
@@ -34,18 +39,18 @@ public class Type {
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getInfo() {
+        return info;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setInfo(String info) {
+        this.info = info;
     }
 
     
-    
+
+   
 
     
-
 
 }
