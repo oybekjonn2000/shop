@@ -17,7 +17,7 @@ public class Payment {
     private String status;
 
     @Column(unique = true, nullable = false, length = 100)
-    private String miqdor;
+    private String quantity;
 
     
     private PaymentType paymentType;
@@ -48,12 +48,15 @@ public class Payment {
         this.status = status;
     }
 
-    public String getMiqdor() {
-        return miqdor;
+  
+    
+
+    public String getQuantity() {
+        return quantity;
     }
 
-    public void setMiqdor(String miqdor) {
-        this.miqdor = miqdor;
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 
     public PaymentType getPaymentType() {

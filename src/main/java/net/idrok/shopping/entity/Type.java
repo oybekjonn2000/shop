@@ -15,7 +15,9 @@ public class Type {
 
     private String name;
     private String info;
-
+    
+ @ManyToOne(targetEntity = Category.class)
+    private Category category;
 
     
 
@@ -27,8 +29,7 @@ public class Type {
         this.info = info;
     }
 
-    @ManyToOne(targetEntity = Category.class)
-    private Category category;
+   
 
     public Long getId() {
         return id;
