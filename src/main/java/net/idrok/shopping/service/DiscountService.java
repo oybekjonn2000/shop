@@ -15,7 +15,7 @@ public class DiscountService {
     DiscountRepository discountRepository;
 
     public Page<Discount> getAll(String key, Pageable pageable) {
-        return discountRepository.findByNameOrPercentContainingIgnoreCase(key, key,  pageable);
+        return discountRepository.findByNameOrPercentContainingIgnoreCase(key,key,  pageable);
     }
 
     public Discount getById(Long id) {

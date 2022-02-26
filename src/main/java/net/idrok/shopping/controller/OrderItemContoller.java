@@ -18,7 +18,7 @@ import net.idrok.shopping.service.OrderItemService;
 
 
 @RestController
-@RequestMapping("/api/orderitems")
+@RequestMapping("/api/orderitem")
 @CrossOrigin(maxAge = 3600)
 
 public class OrderItemContoller {

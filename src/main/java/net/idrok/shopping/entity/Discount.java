@@ -17,7 +17,7 @@ public class Discount {
     @Column(unique = true, nullable = false, length = 100)
     private String name;
 
-    private Integer percent;
+    private String percent;
 
     private String info;
 
@@ -37,11 +37,11 @@ public class Discount {
         this.name = name;
     }
 
-    public Integer getPercent() {
+    public String getPercent() {
         return percent;
     }
 
-    public void setPercent(Integer percent) {
+    public void setPercent(String percent) {
         this.percent = percent;
     }
 
