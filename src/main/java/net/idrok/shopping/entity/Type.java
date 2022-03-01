@@ -6,20 +6,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
 @Entity
 public class Type {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    private Long id;
 
     private String name;
     private String info;
-    
- @ManyToOne(targetEntity = Category.class)
-    private Category category;
 
-    
+    @ManyToOne(targetEntity = Category.class)
+    private Category category;
 
     public String getInfo() {
         return info;
@@ -28,8 +25,6 @@ public class Type {
     public void setInfo(String info) {
         this.info = info;
     }
-
-   
 
     public Long getId() {
         return id;
@@ -54,11 +49,5 @@ public class Type {
     public void setCategory(Category category) {
         this.category = category;
     }
-
-    
-    
-
-    
-
 
 }
