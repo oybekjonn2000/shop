@@ -7,42 +7,40 @@ import org.springframework.stereotype.Service;
 
 import net.idrok.shopping.entity.Customer;
 import net.idrok.shopping.repository.CustomerRepository;
-import net.idrok.shopping.service.dto.CustomerDTO;
+
 
 @Service
 public class CustomerService {
 
     @Autowired
-    CustomerRepository customerRepository;
+    CustomerRepository customerRepo;
 
-    public Page<CustomerDTO> getAll(String key, Pageable pageable) {
-        // return userRepo.findAllByIsmOrFamiliyaContainingIgnoreCase(key, key,
-        // pageable).map(mijoz -> new MijozDTO(mijoz));
-        return customerRepository.findAllByFirstNameOrLastNameContainingIgnoreCase(key, key, pageable).map(CustomerDTO::new);
-    };
-
-    public CustomerDTO getById(Long id) {
-        return customerRepository.findById(id).map(CustomerDTO::new).get();
+    public Page<Customer> getAll(String key, Pageable pageable) {
+        return customerRepo.findAllByFirstNameOrLastNameContainingIgnoreCase(key,key,  pageable);
     }
 
-    public CustomerDTO create(Customer mj) {
-        if (mj.getId() == null)
-            return new CustomerDTO(customerRepository.save(mj));
+    public Customer getById(Long id) {
+        return customerRepo.findById(id).get();
+    }
+
+    public Customer create(Customer ch) {
+        if (ch.getId() == null)
+       return     customerRepo.save(ch);
         throw new RuntimeException("id null bolishi kerak");
     }
 
-    public CustomerDTO update(Customer mj) {
-        if (mj.getId() != null)
-            return new CustomerDTO( customerRepository.save(mj));
+    public Customer update(Customer ch) {
+        if (ch.getId() != null)
+         return   customerRepo.save(ch);
         throw new RuntimeException("id null bolmasligi kerak");
     }
 
-    public void delete(Customer mj) {
-        customerRepository.delete(mj);
+    public void delete(Customer ch) {
+        customerRepo.delete(ch);
     }
 
-    public void deleteById(Long mjId) {
-        customerRepository.deleteById(mjId);
+    public void deleteById(Long chId) {
+        customerRepo.deleteById(chId);
     }
 
 }
