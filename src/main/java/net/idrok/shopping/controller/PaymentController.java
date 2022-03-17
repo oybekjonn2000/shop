@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import net.idrok.shopping.entity.Payment;
 import net.idrok.shopping.service.PaymentService;
 
+
 @RestController
 @RequestMapping("/api/payment")
 @CrossOrigin(maxAge = 3600)
@@ -28,7 +29,7 @@ public class PaymentController {
     @GetMapping()
     public ResponseEntity<Page<Payment>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(paymentService.getAll(key, pageable));
+        return ResponseEntity.ok(paymentService.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")

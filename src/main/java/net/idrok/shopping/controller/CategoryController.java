@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import net.idrok.shopping.entity.Category;
 import net.idrok.shopping.service.CategoryService;
 
+
 @RestController
 @RequestMapping("/api/category")
 @CrossOrigin(maxAge = 3600)
@@ -27,7 +28,7 @@ public class CategoryController {
     @GetMapping()
     public ResponseEntity<Page<Category>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(kategoriyaSVC.getAll(key, pageable));
+        return ResponseEntity.ok(kategoriyaSVC.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")

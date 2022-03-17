@@ -31,7 +31,7 @@ public class CustomerController {
     @GetMapping()
     public ResponseEntity<Page<Customer>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(customerSvc.getAll(key, pageable));
+        return ResponseEntity.ok(customerSvc.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")

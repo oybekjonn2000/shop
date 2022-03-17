@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import net.idrok.shopping.entity.User;
 import net.idrok.shopping.service.UserService;
+
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin(maxAge = 3600)
@@ -26,7 +27,7 @@ public class UserController {
     @GetMapping()
     public ResponseEntity<Page<User>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(userSVC.getAll(key, pageable));
+        return ResponseEntity.ok(userSVC.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")

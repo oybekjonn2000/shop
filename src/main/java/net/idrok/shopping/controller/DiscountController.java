@@ -17,6 +17,7 @@ import net.idrok.shopping.entity.Discount;
 import net.idrok.shopping.service.DiscountService;
 
 
+
 @RestController
 @RequestMapping("/api/discount")
 @CrossOrigin(maxAge = 3600)
@@ -29,7 +30,7 @@ public class DiscountController {
     @GetMapping()
     public ResponseEntity<Page<Discount>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(discountSvc.getAll(key, pageable));
+        return ResponseEntity.ok(discountSvc.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")

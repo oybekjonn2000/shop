@@ -28,7 +28,7 @@ public class BrandController {
     @GetMapping()
     public ResponseEntity<Page<Brand>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(brandSvc.getAll(key, pageable));
+        return ResponseEntity.ok(brandSvc.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")

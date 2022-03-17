@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import net.idrok.shopping.entity.Type;
 import net.idrok.shopping.service.TypeService;
 
+
 @RestController
 @RequestMapping("/api/type")
 @CrossOrigin(maxAge = 3600)
@@ -30,7 +31,7 @@ public class TypeController {
     @GetMapping()
     public ResponseEntity<Page<Type>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(ts.getAll(key, pageable));
+        return ResponseEntity.ok(ts.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")

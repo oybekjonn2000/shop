@@ -17,6 +17,7 @@ import net.idrok.shopping.entity.OrderItem;
 import net.idrok.shopping.service.OrderItemService;
 
 
+
 @RestController
 @RequestMapping("/api/orderitem")
 @CrossOrigin(maxAge = 3600)
@@ -29,7 +30,7 @@ public class OrderItemContoller {
     @GetMapping()
     public ResponseEntity<Page<OrderItem>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(orderItemSVC.getAll(key, pageable));
+        return ResponseEntity.ok(orderItemSVC.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")
