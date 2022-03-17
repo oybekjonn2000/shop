@@ -7,13 +7,14 @@ import org.springframework.stereotype.Service;
 
 import net.idrok.shopping.entity.Category;
 import net.idrok.shopping.repository.CategoryRepository;
+import net.idrok.shopping.service.CategoryService;
 
 @Service
-public class CategoryServiceImpl {
+public class CategoryServiceImpl implements CategoryService {
     @Autowired
     CategoryRepository categoryRepository;
 
-    public Page<Category> getAll(String key, Pageable pageable) {
+    public Page<Category> getAll(Pageable pageable,String key) {
         return categoryRepository.findByNameOrInfoContainingIgnoreCase(key, key, pageable);
     }
 

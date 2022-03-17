@@ -7,15 +7,16 @@ import org.springframework.stereotype.Service;
 
 import net.idrok.shopping.entity.Customer;
 import net.idrok.shopping.repository.CustomerRepository;
+import net.idrok.shopping.service.CustomerService;
 
 
 @Service
-public class CustomerServiceImpl {
+public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     CustomerRepository customerRepo;
 
-    public Page<Customer> getAll(String key, Pageable pageable) {
+    public Page<Customer> getAll(Pageable pageable,String key) {
         return customerRepo.findAllByFirstNameOrLastNameContainingIgnoreCase(key,key,  pageable);
     }
 

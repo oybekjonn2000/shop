@@ -8,14 +8,15 @@ import org.springframework.stereotype.Service;
 import net.idrok.shopping.entity.Payment;
 
 import net.idrok.shopping.repository.PaymentRepository;
+import net.idrok.shopping.service.PaymentService;
 
 @Service
-public class PaymentServiceImpl {
+public class PaymentServiceImpl implements PaymentService {
 
     @Autowired
     PaymentRepository paymentRepository;
 
-    public Page<Payment> getAll(String key, Pageable pageable) {
+    public Page<Payment> getAll(Pageable pageable,String key) {
         return paymentRepository.findByNameOrStatusContainingIgnoreCase(key, key, pageable);
     }
 

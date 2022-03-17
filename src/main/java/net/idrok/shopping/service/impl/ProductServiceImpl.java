@@ -5,14 +5,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import net.idrok.shopping.entity.Product;
 import net.idrok.shopping.repository.ProductRepository;
+import net.idrok.shopping.service.ProductService;
 
 
 @Service
-public class ProductServiceImpl {
+public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    public Page<Product> getAll(String key, Pageable pageable) {
+    public Page<Product> getAll(Pageable pageable,String key) {
         return productRepository.findByNameOrInfoContainingIgnoreCase(key, key, pageable);
     }
 

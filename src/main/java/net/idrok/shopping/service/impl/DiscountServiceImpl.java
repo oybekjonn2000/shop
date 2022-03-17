@@ -5,16 +5,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import net.idrok.shopping.entity.Discount;
 import net.idrok.shopping.repository.DiscountRepository;
+import net.idrok.shopping.service.DiscountService;
 
 @Service
-public class DiscountServiceImpl {
+public class DiscountServiceImpl implements DiscountService{
 
 
     
     @Autowired
     DiscountRepository discountRepository;
 
-    public Page<Discount> getAll(String key, Pageable pageable) {
+    public Page<Discount> getAll(Pageable pageable,String key) {
         return discountRepository.findByNameOrPercentContainingIgnoreCase(key,key,  pageable);
     }
 

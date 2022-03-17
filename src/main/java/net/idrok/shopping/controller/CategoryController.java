@@ -23,32 +23,32 @@ import net.idrok.shopping.service.CategoryService;
 @CrossOrigin(maxAge = 3600)
 public class CategoryController {
     @Autowired
-    CategoryService kategoriyaSVC;
+    CategoryService  categoryService;
 
     @GetMapping()
     public ResponseEntity<Page<Category>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(kategoriyaSVC.getAll(pageable, key));
+        return ResponseEntity.ok(categoryService.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Category> getById(@PathVariable Long id){
-        return ResponseEntity.ok(kategoriyaSVC.getById(id));
+        return ResponseEntity.ok(categoryService.getById(id));
     }
 
     @PostMapping()
     public ResponseEntity<Category> create(@RequestBody Category kt){
-        return ResponseEntity.ok( kategoriyaSVC.create(kt));
+        return ResponseEntity.ok( categoryService.create(kt));
     }
 
     @PutMapping()
     public ResponseEntity<Category> update(@RequestBody Category kt){
-        return ResponseEntity.ok(kategoriyaSVC.update(kt));
+        return ResponseEntity.ok(categoryService.update(kt));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        kategoriyaSVC.deleteById(id);
+        categoryService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 

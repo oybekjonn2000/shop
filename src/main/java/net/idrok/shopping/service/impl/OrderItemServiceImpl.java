@@ -9,15 +9,16 @@ import org.springframework.stereotype.Service;
 import net.idrok.shopping.entity.OrderItem;
 
 import net.idrok.shopping.repository.OrderItemRepository;
+import net.idrok.shopping.service.OrderItemService;
 
 //commit qoshildi
 //commit qoshildidasda
 @Service
-public class OrderItemServiceImpl {
+public class OrderItemServiceImpl implements OrderItemService {
     @Autowired
     OrderItemRepository orderItemRepository;
 
-    public Page<OrderItem> getAll(String key, Pageable pageable) {
+    public Page<OrderItem> getAll(Pageable pageable,String key) {
         return orderItemRepository.findByProductNameOrOrderNameContainingIgnoreCase(key, key, pageable);
     }
 

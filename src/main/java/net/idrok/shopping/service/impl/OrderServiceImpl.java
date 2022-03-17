@@ -9,14 +9,15 @@ import org.springframework.stereotype.Service;
 import net.idrok.shopping.entity.Order;
 
 import net.idrok.shopping.repository.OrderRepository;
+import net.idrok.shopping.service.OrderService;
 
 
 @Service
-public class OrderServiceImpl {
+public class OrderServiceImpl implements OrderService{
     @Autowired
     OrderRepository orderRepository;
 
-    public Page<Order> getAll(String key, Pageable pageable) {
+    public Page<Order> getAll(Pageable pageable,String key) {
         return orderRepository.findByNameOrInfoContainingIgnoreCase(key, key, pageable);
     }
 
