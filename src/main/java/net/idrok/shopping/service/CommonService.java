@@ -9,14 +9,14 @@ public interface CommonService<T> {
      * bu metod bazadan barcha entity~larni o'qib olishga mo'ljallangan
      * 
      * @param pageable
-     * @return
+     * @return key
      */
     public Page<T> getAll(Pageable pageable, String key);
 
     /**
      * bu metod bazadan barcha entity~larni Id orqali o'qib olishga mo'ljallangan
      * 
-     * @param pageable
+     * @param id
      * @return
      */
     public T getById(Long id);
