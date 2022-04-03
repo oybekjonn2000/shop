@@ -1,10 +1,10 @@
 package net.idrok.shopping.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.sun.istack.NotNull;
+
+import javax.persistence.*;
+import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -14,56 +14,95 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String username;
+    @NotNull
+    @Size(min = 2, max = 30)
+    @Column(nullable = false, length = 30)
+    private String firstName;
+
+    @Size(max = 30)
+    @Column(length = 30)
+    private String lastName;
+
+    @NotNull
+    @Size(min = 6, max = 30)
+    @Column(nullable = false, length = 30, unique = true)
+    private String login;
+
+    @NotNull
+    @Size(min = 6, max = 30)
+    @Column(nullable = false, length = 30)
     private String password;
-    private String email;
-    private String role;
-    
- 
+
+    private LocalDateTime regTime;
+    private LocalDateTime lastVisit;
 
 
-
-
-
-
-        
-   
+    private Role role;
 
 
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
-    public String getUsername() {
-        return username;
+
+    public String getFirstName() {
+        return firstName;
     }
-    public void setUsername(String username) {
-        this.username = username;
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
-    public String getEmail() {
-        return email;
+
+
+
+    public LocalDateTime getLastVisit() {
+        return lastVisit;
     }
-    public void setEmail(String email) {
-        this.email = email;
+
+    public void setLastVisit(LocalDateTime lastVisit) {
+        this.lastVisit = lastVisit;
     }
-    public String getRole() {
+
+    public Role getRole() {
         return role;
     }
-    public void setRole(String role) {
+
+    public void setRole(Role role) {
         this.role = role;
     }
 
+    public LocalDateTime getRegTime() {
+        return regTime;
+    }
 
-
-    
-    
-
+    public void setRegTime(LocalDateTime regTime) {
+        this.regTime = regTime;
+    }
 }

@@ -1,10 +1,11 @@
 package net.idrok.shopping.entity;
 
-
+import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -12,6 +13,10 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Lob
+    private byte[] img;
+
     private String name;
     private String color;
     private Double price;
@@ -100,13 +105,14 @@ public class Product {
         this.info = info;
     }
 
-    
+    public byte[] getImg() {
+        return img;
+    }
+
+    public void setImg(byte[] img) {
+        this.img = img;
+    }
 
     
 
-    
-
-    
-
-  
 }

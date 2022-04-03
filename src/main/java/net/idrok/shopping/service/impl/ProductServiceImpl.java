@@ -1,4 +1,6 @@
 package net.idrok.shopping.service.impl;
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -9,6 +11,7 @@ import net.idrok.shopping.service.ProductService;
 
 
 @Service
+@Transactional
 public class ProductServiceImpl implements ProductService {
     @Autowired
     ProductRepository productRepository;

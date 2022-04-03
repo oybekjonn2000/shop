@@ -1,4 +1,4 @@
-package net.idrok.shopping.entity.repository;
+package net.idrok.shopping.repository;
 
 
 import javax.transaction.Transactional;
