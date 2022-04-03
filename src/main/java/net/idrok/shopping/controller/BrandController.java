@@ -23,32 +23,32 @@ import net.idrok.shopping.service.BrandService;
 @CrossOrigin(maxAge = 3600)
 public class BrandController {
     @Autowired
-    BrandService brandSvc;
+    BrandService brandService;
 
     @GetMapping()
     public ResponseEntity<Page<Brand>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(brandSvc.getAll(pageable, key));
+        return ResponseEntity.ok(brandService.getAll(key, pageable));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Brand> getById(@PathVariable Long id){
-        return ResponseEntity.ok(brandSvc.getById(id));
+        return ResponseEntity.ok(brandService.getById(id));
     }
 
     @PostMapping()
     public ResponseEntity<Brand> create(@RequestBody Brand kt){
-        return ResponseEntity.ok( brandSvc.create(kt));
+        return ResponseEntity.ok( brandService.create(kt));
     }
 
     @PutMapping()
     public ResponseEntity<Brand> update(@RequestBody Brand kt){
-        return ResponseEntity.ok(brandSvc.update(kt));
+        return ResponseEntity.ok(brandService.update(kt));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        brandSvc.deleteById(id);
+        brandService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 

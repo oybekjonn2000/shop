@@ -10,7 +10,7 @@ import net.idrok.shopping.service.BrandService;
 
 
 @Service
-public class BrandServiceImpl implements BrandService {
+public class BrandServiceImpl extends BrandService {
     @Autowired
     BrandRepository brandRepository;
 

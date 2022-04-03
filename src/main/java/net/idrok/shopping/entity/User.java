@@ -29,8 +29,8 @@ public class User {
     private String login;
 
     @NotNull
-    @Size(min = 6, max = 30)
-    @Column(nullable = false, length = 30)
+    @Size(min = 60, max = 60)
+    @Column(nullable = false, length = 60)
     private String password;
 
     private LocalDateTime regTime;
@@ -38,7 +38,15 @@ public class User {
 
 
     private Role role;
+    private boolean active;
 
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 
     public Long getId() {
         return id;

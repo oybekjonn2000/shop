@@ -15,31 +15,35 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
-    public Page<User> getAll(Pageable pageable,String key) {
-        return userRepository.findByUsernameOrEmailContainingIgnoreCase(key,key, pageable);
+    @Override
+    public Page<User> getAll(Pageable pageable, String key) {
+        return (Page<User>) userRepository.findAll();
     }
 
+    @Override
     public User getById(Long id) {
         return userRepository.findById(id).get();
     }
 
-    public User create(User t) {
-        if (t.getId() == null)
-            return userRepository.save(t);
-        throw new RuntimeException("id null bolishi kerak");
+    @Override
+    public User create(User entity) {
+        return  userRepository.save(entity);
     }
 
-    public User update(User t) {
-        if (t.getId() != null)
-            return userRepository.save(t);
-        throw new RuntimeException("id null bolmasligi kerak");
+    @Override
+    public User update(User entity) {
+        return  userRepository.save(entity);
     }
 
-    public void delete(User t) {
-        userRepository.delete(t);
+    @Override
+    public void delete(User entity) {
+        userRepository.delete(entity);
+
     }
 
-    public void deleteById(Long mjId) {
-        userRepository.deleteById(mjId);
+    @Override
+    public void deleteById(Long entityId) {
+        userRepository.deleteById(entityId);
+
     }
 }
