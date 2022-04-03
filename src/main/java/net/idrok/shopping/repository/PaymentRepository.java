@@ -1,4 +1,4 @@
-package net.idrok.shopping.repository;
+package net.idrok.shopping.entity.repository;
 
 import java.util.List;
 
