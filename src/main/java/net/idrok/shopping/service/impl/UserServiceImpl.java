@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> getAll(Pageable pageable, String key) {
-        return (Page<User>) userRepository.findAll();
+        return userRepository.findByLoginOrFirstNameContainingIgnoreCase(key, key, pageable);
     }
 
     @Override

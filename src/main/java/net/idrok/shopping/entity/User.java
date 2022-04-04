@@ -40,6 +40,16 @@ public class User {
     private Role role;
     private boolean active;
 
+    
+
+
+    
+
+    public User() {
+    }
+
+
+
     public boolean isActive() {
         return active;
     }
