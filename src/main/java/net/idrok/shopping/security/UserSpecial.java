@@ -25,6 +25,10 @@ public class UserSpecial implements UserDetails {
 
     }
 
+    public UserSpecial() {
+
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authority;
