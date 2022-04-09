@@ -1,19 +1,26 @@
 package net.idrok.shopping.service.impl;
 
 
+import net.idrok.shopping.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import net.idrok.shopping.entity.User;
 import net.idrok.shopping.repository.UserRepository;
 import net.idrok.shopping.service.UserService;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
     
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public Page<User> getAll(Pageable pageable, String key) {
@@ -27,8 +34,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User entity) {
-        return  userRepository.save(entity);
+        // TODO Auto-generated method stub
+        if(entity.getId() == null){
+            entity.setRole(Role.USER);
+            entity.setRegTime(LocalDateTime.now());
+            entity.setLastVisit(LocalDateTime.now());
+            entity.setActive(true);
+            entity.setPassword(passwordEncoder.encode(entity.getPassword()));
+            return userRepository.save(entity);
+        }
+        throw new RuntimeException("id null bo'lsihi shart");
     }
+
+
 
     @Override
     public User update(User entity) {
@@ -45,5 +63,10 @@ public class UserServiceImpl implements UserService {
     public void deleteById(Long entityId) {
         userRepository.deleteById(entityId);
 
+    }
+
+    @Override
+    public Optional<User> getByLogin(String login) {
+        return userRepository.findByLogin(login);
     }
 }

@@ -16,34 +16,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/account")
 public class AccountController {
+
+
+
     @Autowired
-     UserService userService;
+    UserService userService;
 
-     @Autowired
-     AuthenticationManager authenticationManager;
-     
-     @Autowired
-     JwtUtil jwtUtil;
+    @Autowired
+    AuthenticationManager authenticationManager;
 
+    @Autowired
+    JwtUtil jwtUtil;
 
     @PostMapping("/auth")
     public Token auth(@RequestBody UserSpecial userSpecial){
-
-        authenticationManager.authenticate
-        (new UsernamePasswordAuthenticationToken(userSpecial.getUsername(), userSpecial.getPassword()));
-
-        String token = jwtUtil
-        .generateToken(userSpecial
-        .getUsername(), "ADMIN");
-
-        return  new Token(token);
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userSpecial.getUsername(), userSpecial.getPassword()));
+        System.out.println();
+        User u = userService.getByLogin(userSpecial.getUsername()).get();
+        String token = jwtUtil.generateToken(u.getLogin(), u.getRole().toString());
+        return new Token(token);
     }
 
-    
     @PostMapping("/register")
-    public User register(@RequestBody User user){
-
-        return null;
+    public Token register(@RequestBody User user){
+        String eskiParol = user.getPassword();
+        userService.create(user);
+        user.setPassword(eskiParol);
+        return auth(new UserSpecial(user));
     }
 }
 

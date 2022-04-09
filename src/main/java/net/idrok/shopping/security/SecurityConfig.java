@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -24,16 +24,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     SecurityFilter securityFilter;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
+ 
     @Bean
     @Override
-    public AuthenticationManager authenticationManager() throws Exception{
+    public AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
-
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userProvider).passwordEncoder(new BCryptPasswordEncoder());
+        auth.userDetailsService(userProvider).passwordEncoder(passwordEncoder);
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -41,9 +42,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // Barcha so'rovlar yopish
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/api/product").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/account/auth").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/user").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/account/register").permitAll()
                 .antMatchers("/api/type").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()

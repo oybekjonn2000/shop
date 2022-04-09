@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.annotation.PostConstruct;
 import javax.crypto.SecretKey;
@@ -32,12 +33,14 @@ public class ShoppingApplication {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	PasswordEncoder encoder;
 
 	final Logger LOG = LoggerFactory.getLogger(ShoppingApplication.class.getName());
 
 	@PostConstruct
 	public void definePrimaryAdmin(){
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
 		if(userRepository.findByLogin("admin123").isEmpty()){
 			User user = new User();
 			user.setFirstName("Adminstration");
