@@ -1,5 +1,6 @@
 package net.idrok.shopping.controller;
 
+import net.idrok.shopping.dto.UserDTO;
 import net.idrok.shopping.entity.User;
 import net.idrok.shopping.security.JwtUtil;
 import net.idrok.shopping.security.Token;
@@ -38,11 +39,10 @@ public class AccountController {
     }
 
     @PostMapping("/register")
-    public Token register(@RequestBody User user){
-        String eskiParol = user.getPassword();
-        userService.create(user);
-        user.setPassword(eskiParol);
-        return auth(new UserSpecial(user));
+    public UserDTO register(@RequestBody User user){
+
+      return new UserDTO( userService.create(user));
+
     }
 }
 

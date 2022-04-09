@@ -26,22 +26,26 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     PasswordEncoder passwordEncoder;
- 
+
     @Bean
     @Override
     public AuthenticationManager authenticationManager() throws Exception {
         return super.authenticationManager();
     }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userProvider).passwordEncoder(passwordEncoder);
     }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http = http.cors().and().csrf().disable();
         // Barcha so'rovlar yopish
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/api/product").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/account/auth").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/account/register").permitAll()
                 .antMatchers("/api/type").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -50,6 +54,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
     }
+
     @Override
     public void configure(WebSecurity web) throws Exception {
         super.configure(web);
