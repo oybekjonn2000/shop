@@ -9,10 +9,7 @@ import net.idrok.shopping.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/account")
@@ -44,5 +41,11 @@ public class AccountController {
       return new UserDTO( userService.create(user));
 
     }
+    @GetMapping("/current")
+        public UserDTO getCurrentUser(){
+           return userService.getCurrentUser();
+        }
+
+
 }
 

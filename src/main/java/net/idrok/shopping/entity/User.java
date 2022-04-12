@@ -23,6 +23,10 @@ public class User {
     @Column(length = 30)
     private String lastName;
 
+    @Size(max = 30)
+    @Column(length = 30)
+    private String email;
+
     @NotNull
     @Size(min = 6, max = 30)
     @Column(nullable = false, length = 30, unique = true)
@@ -48,7 +52,13 @@ public class User {
     public User() {
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public boolean isActive() {
         return active;
