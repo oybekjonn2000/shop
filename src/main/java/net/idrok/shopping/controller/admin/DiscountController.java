@@ -1,5 +1,4 @@
-package net.idrok.shopping.controller;
-
+package net.idrok.shopping.controller.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,45 +13,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import net.idrok.shopping.entity.Discount;
+import net.idrok.shopping.service.DiscountService;
 
-import net.idrok.shopping.entity.Type;
-import net.idrok.shopping.service.TypeService;
 
 
 @RestController
-@RequestMapping("/api/type")
+@RequestMapping("/api/discount")
 @CrossOrigin(maxAge = 3600)
-public class TypeController {
+public class DiscountController {
 
 
     @Autowired
-    TypeService ts;
+    DiscountService discountSvc;
 
     @GetMapping()
-    public ResponseEntity<Page<Type>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
+    public ResponseEntity<Page<Discount>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(ts.getAll(pageable, key));
+        return ResponseEntity.ok(discountSvc.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Type> getById(@PathVariable Long id){
-        return ResponseEntity.ok(ts.getById(id));
+    public ResponseEntity<Discount> getById(@PathVariable Long id){
+        return ResponseEntity.ok(discountSvc.getById(id));
     }
 
     @PostMapping()
-    public ResponseEntity<Type> create(@RequestBody Type mj){
-        return ResponseEntity.ok( ts.create(mj));
+    public ResponseEntity<Discount> create(@RequestBody Discount ch){
+        return ResponseEntity.ok( discountSvc.create(ch));
     }
 
     @PutMapping()
-    public ResponseEntity<Type> update(@RequestParam Type mj){
-        return ResponseEntity.ok(ts.update(mj));
+    public ResponseEntity<Discount> update(@RequestBody Discount ch){
+        return ResponseEntity.ok(discountSvc.update(ch));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        ts.deleteById(id);
+        discountSvc.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
 
 }

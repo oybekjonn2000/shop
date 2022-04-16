@@ -1,4 +1,4 @@
-package net.idrok.shopping.controller;
+package net.idrok.shopping.controller.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,45 +13,47 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import net.idrok.shopping.entity.Payment;
-import net.idrok.shopping.service.PaymentService;
+
+import net.idrok.shopping.entity.Order;
+import net.idrok.shopping.service.OrderService;
+
 
 
 @RestController
-@RequestMapping("/api/payment")
+@RequestMapping("/api/order")
 @CrossOrigin(maxAge = 3600)
-public class PaymentController {
 
+public class OrderController {
 
     @Autowired
-    PaymentService paymentService;
+    OrderService orderSvc;
 
     @GetMapping()
-    public ResponseEntity<Page<Payment>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
+    public ResponseEntity<Page<Order>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(paymentService.getAll(pageable, key));
+        return ResponseEntity.ok(orderSvc.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Payment> getById(@PathVariable Long id){
-        return ResponseEntity.ok(paymentService.getById(id));
+    public ResponseEntity<Order> getById(@PathVariable Long id){
+        return ResponseEntity.ok(orderSvc.getById(id));
     }
 
     @PostMapping()
-    public ResponseEntity<Payment> create(@RequestBody Payment mj){
-        return ResponseEntity.ok( paymentService.create(mj));
+    public ResponseEntity<Order> create(@RequestBody Order bm){
+        return ResponseEntity.ok( orderSvc.create(bm));
     }
 
     @PutMapping()
-    public ResponseEntity<Payment> update(@RequestBody Payment mj){
-        return ResponseEntity.ok(paymentService.update(mj));
+    public ResponseEntity<Order> update(@RequestBody Order bm){
+        return ResponseEntity.ok(orderSvc.update(bm));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        paymentService.deleteById(id);
+        orderSvc.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
-
+    
 }

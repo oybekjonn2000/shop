@@ -1,4 +1,4 @@
-package net.idrok.shopping.controller;
+package net.idrok.shopping.controller.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +18,7 @@ import net.idrok.shopping.entity.User;
 import net.idrok.shopping.service.UserService;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/systemuser")
 @CrossOrigin(maxAge = 3600)
 public class UserController {
     @Autowired

@@ -1,4 +1,4 @@
-package net.idrok.shopping.controller;
+package net.idrok.shopping.controller.admin;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

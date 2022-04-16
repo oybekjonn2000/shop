@@ -1,4 +1,4 @@
-package net.idrok.shopping.controller;
+package net.idrok.shopping.controller.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,45 +13,46 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import net.idrok.shopping.entity.OrderItem;
+import net.idrok.shopping.service.OrderItemService;
 
-import net.idrok.shopping.entity.Category;
-import net.idrok.shopping.service.CategoryService;
 
 
 @RestController
-@RequestMapping("/api/category")
+@RequestMapping("/api/orderitem")
 @CrossOrigin(maxAge = 3600)
-public class CategoryController {
+
+public class OrderItemContoller {
+
     @Autowired
-    CategoryService  categoryService;
+    OrderItemService orderItemSVC;
 
     @GetMapping()
-    public ResponseEntity<Page<Category>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
+    public ResponseEntity<Page<OrderItem>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(categoryService.getAll(pageable, key));
+        return ResponseEntity.ok(orderItemSVC.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Category> getById(@PathVariable Long id){
-        return ResponseEntity.ok(categoryService.getById(id));
+    public ResponseEntity<OrderItem> getById(@PathVariable Long id){
+        return ResponseEntity.ok(orderItemSVC.getById(id));
     }
 
     @PostMapping()
-    public ResponseEntity<Category> create(@RequestBody Category kt){
-        return ResponseEntity.ok( categoryService.create(kt));
+    public ResponseEntity<OrderItem> create(@RequestBody OrderItem bm){
+        return ResponseEntity.ok( orderItemSVC.create(bm));
     }
 
     @PutMapping()
-    public ResponseEntity<Category> update(@RequestBody Category kt){
-        return ResponseEntity.ok(categoryService.update(kt));
+    public ResponseEntity<OrderItem> update(@RequestBody OrderItem bm){
+        return ResponseEntity.ok(orderItemSVC.update(bm));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        categoryService.deleteById(id);
+        orderItemSVC.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
-    
     
 }

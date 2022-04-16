@@ -1,4 +1,4 @@
-package net.idrok.shopping.controller;
+package net.idrok.shopping.controller.admin;
 
 import net.idrok.shopping.dto.UserDTO;
 import net.idrok.shopping.entity.User;

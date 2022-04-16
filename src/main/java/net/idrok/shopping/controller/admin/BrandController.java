@@ -1,4 +1,4 @@
-package net.idrok.shopping.controller;
+package net.idrok.shopping.controller.admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,46 +14,42 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import net.idrok.shopping.entity.Order;
-import net.idrok.shopping.service.OrderService;
-
+import net.idrok.shopping.entity.Brand;
+import net.idrok.shopping.service.BrandService;
 
 
 @RestController
-@RequestMapping("/api/order")
+@RequestMapping("/api/brand")
 @CrossOrigin(maxAge = 3600)
-
-public class OrderController {
-
+public class BrandController {
     @Autowired
-    OrderService orderSvc;
+    BrandService brandService;
 
     @GetMapping()
-    public ResponseEntity<Page<Order>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
+    public ResponseEntity<Page<Brand>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
-        return ResponseEntity.ok(orderSvc.getAll(pageable, key));
+        return ResponseEntity.ok(brandService.getAll(key, pageable));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> getById(@PathVariable Long id){
-        return ResponseEntity.ok(orderSvc.getById(id));
+    public ResponseEntity<Brand> getById(@PathVariable Long id){
+        return ResponseEntity.ok(brandService.getById(id));
     }
 
     @PostMapping()
-    public ResponseEntity<Order> create(@RequestBody Order bm){
-        return ResponseEntity.ok( orderSvc.create(bm));
+    public ResponseEntity<Brand> create(@RequestBody Brand kt){
+        return ResponseEntity.ok( brandService.create(kt));
     }
 
     @PutMapping()
-    public ResponseEntity<Order> update(@RequestBody Order bm){
-        return ResponseEntity.ok(orderSvc.update(bm));
+    public ResponseEntity<Brand> update(@RequestBody Brand kt){
+        return ResponseEntity.ok(brandService.update(kt));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
-        orderSvc.deleteById(id);
+        brandService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
-    
 }

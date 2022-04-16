@@ -1,5 +1,6 @@
 package net.idrok.shopping.security;
 
+import net.idrok.shopping.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -52,7 +53,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, "/api/brand").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/account/register").permitAll()
                 .antMatchers("/api/type").hasAnyRole("ADMIN")
-                .anyRequest().authenticated()
+        //   User huquqlari
+                .antMatchers("api/user/**").authenticated()
+
+                //admin
+                .anyRequest().hasAnyRole(Role.ADMIN.toString())
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
