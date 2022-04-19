@@ -55,7 +55,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User update(User entity) {
-        return  userRepository.save(entity);
+        User u = userRepository.findById(entity.getId()).get();
+        u.setFirstName(entity.getFirstName());
+        u.setLastName(entity.getLastName());
+        u.setImage(entity.getImage());
+
+
+
+        return  userRepository.save(u);
     }
 
     @Override

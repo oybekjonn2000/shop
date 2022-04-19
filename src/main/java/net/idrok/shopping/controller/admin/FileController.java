@@ -76,7 +76,7 @@ public class FileController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<Fayl> upload(@RequestParam("fayl")MultipartFile fayl) {
+    public ResponseEntity<Fayl> upload(@RequestParam("file")MultipartFile fayl) {
 
         Fayl f = new Fayl();
         f.setName(fayl.getOriginalFilename());

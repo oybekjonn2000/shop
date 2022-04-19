@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Id;
 
+import net.idrok.shopping.entity.Fayl;
 import net.idrok.shopping.entity.Role;
 import net.idrok.shopping.entity.User;
 
@@ -16,6 +17,8 @@ public class UserDTO {
     private String login;
     private Role role;
     private LocalDateTime regTime;
+    private Fayl rasm;
+
 
 
     public UserDTO(){
@@ -30,6 +33,7 @@ public class UserDTO {
         this.login = user.getLogin();
         this.regTime = user.getRegTime();
         this.role = user.getRole();
+        this.rasm = user.getImage();
 
     }
 
@@ -81,7 +85,13 @@ public class UserDTO {
         this.regTime = regTime;
     }
 
-    
+    public Fayl getRasm() {
+        return rasm;
+    }
+
+    public void setRasm(Fayl rasm) {
+        this.rasm = rasm;
+    }
 
 
   
