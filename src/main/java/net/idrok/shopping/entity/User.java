@@ -44,10 +44,16 @@ public class User {
     private Role role;
     private boolean active;
 
+    @ManyToOne
+    private  Fayl image;
 
+    public Fayl getImage() {
+        return image;
+    }
 
-
-    
+    public void setImage(Fayl image) {
+        this.image = image;
+    }
 
     public User() {
     }

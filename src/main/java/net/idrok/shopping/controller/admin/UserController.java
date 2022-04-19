@@ -18,7 +18,7 @@ import net.idrok.shopping.entity.User;
 import net.idrok.shopping.service.UserService;
 
 @RestController
-@RequestMapping("/api/systemuser")
+@RequestMapping("/api/user")
 @CrossOrigin(maxAge = 3600)
 public class UserController {
     @Autowired

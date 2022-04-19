@@ -47,17 +47,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http = http.cors().and().csrf().disable();
         // Barcha so'rovlar yopish
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/product").permitAll()
+     
                 .antMatchers(HttpMethod.POST, "/api/account/auth").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/brand").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/brand").permitAll()
+          
+              
+       
                 .antMatchers(HttpMethod.POST, "/api/account/register").permitAll()
-                .antMatchers("/api/type").hasAnyRole("ADMIN")
+                .antMatchers( "/api/file/**").permitAll()
+              
+            
         //   User huquqlari
                 .antMatchers("api/user/**").authenticated()
+                .antMatchers("api/account/**").authenticated()
 
                 //admin
-                .anyRequest().hasAnyRole(Role.ADMIN.toString())
+                .anyRequest().hasAnyAuthority(Role.ADMIN.toString())
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
