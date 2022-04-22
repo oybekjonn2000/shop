@@ -36,6 +36,7 @@ public class User {
     @Size(min = 60, max = 60)
     @Column(nullable = false, length = 60)
     private String password;
+    private String phoneNumber;
 
     private LocalDateTime regTime;
     private LocalDateTime lastVisit;
@@ -46,6 +47,14 @@ public class User {
 
     @ManyToOne
     private  Fayl image;
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
     public Fayl getImage() {
         return image;
