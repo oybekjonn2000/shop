@@ -1,5 +1,4 @@
 package net.idrok.shopping.controller.admin;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +23,12 @@ import net.idrok.shopping.service.OrderItemService;
 
 public class OrderItemContoller {
 
-    @Autowired
+    private final
     OrderItemService orderItemSVC;
+
+    public OrderItemContoller(OrderItemService orderItemSVC) {
+        this.orderItemSVC = orderItemSVC;
+    }
 
     @GetMapping()
     public ResponseEntity<Page<OrderItem>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){

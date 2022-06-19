@@ -1,37 +1,63 @@
 package net.idrok.shopping.entity;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Product {
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
-    @Lob
-    private byte[] img;
-
-    private String name;
-    private String color;
-    private Double price;
-    private String quantity;
-
     @ManyToOne
-    private Discount discount;
+    private  ProductCategory category;
+
+    @Column(name = "sku")
+    private String sku;
+
+    @Column(name = "name")
+    private String name;
 
     @ManyToOne
     private Brand brand;
 
-    @ManyToOne
-    private Type type;
+    @Column(name = "description")
+    private String description;
 
-    private String info;
+    @Column(name = "unit_price")
+    private Long unitPrice;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    @Column(name = "active")
+    private boolean active;
+
+    @Column(name = "units_in_stock")
+    private int unitsInStock;
+
+    @Column(name = "date_created")
+    @CreationTimestamp
+    private LocalDateTime dateCreated;
+
+    @Column(name = "last_updated")
+    @UpdateTimestamp
+    private LocalDateTime lastUpdated;
+
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
 
     public Long getId() {
         return id;
@@ -39,6 +65,22 @@ public class Product {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public ProductCategory getCategory() {
+        return category;
+    }
+
+    public void setCategory(ProductCategory category) {
+        this.category = category;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
     }
 
     public String getName() {
@@ -49,70 +91,59 @@ public class Product {
         this.name = name;
     }
 
-    public String getColor() {
-        return color;
+    public String getDescription() {
+        return description;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public Double getPrice() {
-        return price;
+    public Long getUnitPrice() {
+        return unitPrice;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setUnitPrice(Long unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
-    public Discount getDiscount() {
-        return discount;
+    public boolean isActive() {
+        return active;
     }
 
-    public void setDiscount(Discount discount) {
-        this.discount = discount;
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
-    public Brand getBrand() {
-        return brand;
+    public int getUnitsInStock() {
+        return unitsInStock;
     }
 
-    public void setBrand(Brand brand) {
-        this.brand = brand;
+    public void setUnitsInStock(int unitsInStock) {
+        this.unitsInStock = unitsInStock;
     }
 
-    public Type getType() {
-        return type;
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
-    public String getInfo() {
-        return info;
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
-
-    public byte[] getImg() {
-        return img;
-    }
-
-    public void setImg(byte[] img) {
-        this.img = img;
-    }
-
-    
-
 }

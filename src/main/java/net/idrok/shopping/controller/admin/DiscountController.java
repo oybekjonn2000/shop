@@ -1,5 +1,4 @@
 package net.idrok.shopping.controller.admin;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +23,11 @@ import net.idrok.shopping.service.DiscountService;
 public class DiscountController {
 
 
-    @Autowired
-    DiscountService discountSvc;
+  private final  DiscountService discountSvc;
+
+    public DiscountController(DiscountService discountSvc) {
+        this.discountSvc = discountSvc;
+    }
 
     @GetMapping()
     public ResponseEntity<Page<Discount>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){

@@ -1,35 +1,68 @@
 package net.idrok.shopping.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table (name = "app_order")
 public class Order{
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private Long id;
 
-    @Column (unique = true, nullable = false, length = 100)
-    private String name;
+    @Column(name="order_tracking_number")
+    private String orderTrackingNumber;
 
+    @Column(name="total_quantity")
+    private int totalQuantity;
+
+    @Column(name="total_price")
+    private BigDecimal totalPrice;
+
+    @Column(name="status")
+    private String status;
+
+    @Column(name="date_created")
+    @CreationTimestamp
+    private Date dateCreated;
+
+    @Column(name="last_updated")
+    @UpdateTimestamp
+    private Date lastUpdated;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
+    private Set<OrderItem> orderItems = new HashSet<>();
 
     @ManyToOne
+    @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    private String quantity;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "shipping_address_id", referencedColumnName = "id")
+    private Address shippingAddress;
 
-    @OneToOne
-    private Payment payment;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "billing_address_id", referencedColumnName = "id")
+    private Address billingAddress;
 
-    private String info;
+    public void add(OrderItem item) {
+
+        if (item != null) {
+            if (orderItems == null) {
+                orderItems = new HashSet<>();
+            }
+
+            orderItems.add(item);
+            item.setOrder(this);
+        }
+    }
 
     public Long getId() {
         return id;
@@ -39,12 +72,60 @@ public class Order{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getOrderTrackingNumber() {
+        return orderTrackingNumber;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOrderTrackingNumber(String orderTrackingNumber) {
+        this.orderTrackingNumber = orderTrackingNumber;
+    }
+
+    public int getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public void setTotalQuantity(int totalQuantity) {
+        this.totalQuantity = totalQuantity;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public Date getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(Date lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
+    public Set<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(Set<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public Customer getCustomer() {
@@ -55,30 +136,21 @@ public class Order{
         this.customer = customer;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public Address getShippingAddress() {
+        return shippingAddress;
     }
 
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setShippingAddress(Address shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
 
-    public Payment getPayment() {
-        return payment;
+    public Address getBillingAddress() {
+        return billingAddress;
     }
 
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    public void setBillingAddress(Address billingAddress) {
+        this.billingAddress = billingAddress;
     }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
     
 
 

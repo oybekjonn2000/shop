@@ -1,5 +1,6 @@
 package net.idrok.shopping.service.impl;
 
+import net.idrok.shopping.entity.Fayl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +17,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Autowired
     PaymentRepository paymentRepository;
 
-    public Page<Payment> getAll(Pageable pageable,String key) {
+    public Page<Payment> getAll(Pageable pageable, String key) {
         return paymentRepository.findByNameOrStatusContainingIgnoreCase(key, key, pageable);
     }
 

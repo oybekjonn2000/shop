@@ -1,94 +1,81 @@
 package net.idrok.shopping.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long id;
+    @Column(name="id")
+    private Long id;
 
+    @Column(name="first_name")
     private String firstName;
+
+    @Column(name="last_name")
     private String lastName;
-    private String phone;
 
+    @Column(name="email")
+    private String email;
 
-    private String address;
-    
-    @OneToOne(targetEntity = User.class)
-    private User user;
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    private Set<Order> orders = new HashSet<>();
 
-    
+    public void add(Order order) {
 
-    
+        if (order != null) {
 
-    public Customer() {
-    }
+            if (orders == null) {
+                orders = new HashSet<>();
+            }
 
-
-    public Customer(Long id, String firstName, String lastName, String phone, String address, User user) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phone = phone;
-        this.address = address;
-        this.user = user;
+            orders.add(order);
+            order.setCustomer(this);
+        }
     }
 
 
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getFirstName() {
         return firstName;
     }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public String getPhone() {
-        return phone;
-    }
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-    public String getAddress() {
-        return address;
-    }
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    public User getUser() {
-        return user;
-    }
-    public void setUser(User user) {
-        this.user = user;
+
+    public String getEmail() {
+        return email;
     }
 
-    
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public Set<Order> getOrders() {
+        return orders;
+    }
 
-   
-
-    
-
-
-
-
-
-    
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
 }

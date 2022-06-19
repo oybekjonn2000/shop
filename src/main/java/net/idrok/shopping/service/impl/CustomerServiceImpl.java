@@ -1,13 +1,12 @@
 package net.idrok.shopping.service.impl;
 
+import net.idrok.shopping.entity.Customer;
+import net.idrok.shopping.repository.CustomerRepository;
+import net.idrok.shopping.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import net.idrok.shopping.entity.Customer;
-import net.idrok.shopping.repository.CustomerRepository;
-import net.idrok.shopping.service.CustomerService;
 
 
 @Service
@@ -16,7 +15,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     CustomerRepository customerRepo;
 
-    public Page<Customer> getAll(Pageable pageable,String key) {
+    public Page<Customer> getAll(Pageable pageable, String key) {
         return customerRepo.findAllByFirstNameOrLastNameContainingIgnoreCase(key,key,  pageable);
     }
 

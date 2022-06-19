@@ -1,15 +1,13 @@
 package net.idrok.shopping.service.impl;
 
 
+import net.idrok.shopping.entity.Order;
+import net.idrok.shopping.repository.OrderRepository;
+import net.idrok.shopping.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import net.idrok.shopping.entity.Order;
-
-import net.idrok.shopping.repository.OrderRepository;
-import net.idrok.shopping.service.OrderService;
 
 
 @Service
@@ -17,8 +15,8 @@ public class OrderServiceImpl implements OrderService{
     @Autowired
     OrderRepository orderRepository;
 
-    public Page<Order> getAll(Pageable pageable,String key) {
-        return orderRepository.findByNameOrInfoContainingIgnoreCase(key, key, pageable);
+    public Page<Order> getAll(Pageable pageable, String key) {
+        return orderRepository.findByOrderTrackingNumberContainingIgnoreCase(key, pageable);
     }
 
     public Order getById(Long id) {

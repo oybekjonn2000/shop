@@ -1,47 +1,61 @@
 package net.idrok.shopping.service.impl;
-import javax.transaction.Transactional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 import net.idrok.shopping.entity.Product;
 import net.idrok.shopping.repository.ProductRepository;
 import net.idrok.shopping.service.ProductService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 
 
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService {
-    @Autowired
-    ProductRepository productRepository;
 
-    public Page<Product> getAll(Pageable pageable,String key) {
-        return productRepository.findByNameOrInfoContainingIgnoreCase(key, key, pageable);
+    private final ProductRepository productRepository;
+
+    public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
+    @Override
+    public Page<Product> getAll(Pageable pageable, String key) {
+        return productRepository.findByNameContainingIgnoreCase(key, pageable);
+    }
+
+    @Override
     public Product getById(Long id) {
         return productRepository.findById(id).get();
     }
 
-    public Product create(Product m) {
-        if (m.getId() == null)
-       return     productRepository.save(m);
+    @Override
+    public Product create(Product product) {
+        if (product.getId() == null){
+            product.setDateCreated(LocalDateTime.now());
+            product.setLastUpdated(LocalDateTime.now());
+            product.setActive(true);
+            return  productRepository.save(product);
+        }
         throw new RuntimeException("id null bolishi kerak");
     }
 
-    public Product update(Product m) {
-        if (m.getId() != null)
-         return   productRepository.save(m);
-        throw new RuntimeException("id null bolmasligi kerak");
+    @Override
+    public Product update(Product entity) {
+        if(entity.getId()!=null)
+            return productRepository.save(entity);
+        throw  new RuntimeException("id must not be null ");
     }
 
-    public void delete(Product m) {
-        productRepository.delete(m);
+    @Override
+    public void delete(Product entity) {
+productRepository.delete(entity);
     }
 
-    public void deleteById(Long mId) {
-        productRepository.deleteById(mId);
+    @Override
+    public void deleteById(Long entityId) {
+    productRepository.deleteById(entityId);
     }
-    
 }
