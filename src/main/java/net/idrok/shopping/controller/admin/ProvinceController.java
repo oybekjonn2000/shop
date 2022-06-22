@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(maxAge = 3600)
 public class ProvinceController {
 
-    private final
-    ProvinceService provinceService;
+    private final ProvinceService provinceService;
 
     public ProvinceController(ProvinceService provinceService) {
         this.provinceService = provinceService;

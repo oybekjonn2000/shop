@@ -15,7 +15,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public Page<City> getAll(Pageable pageable, String key) {
-        return cityRepository.findByProvinceCode(key, pageable);
+        return cityRepository.findByNameContainingIgnoreCase(key, pageable);
     }
 
     @Override

@@ -6,11 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Repository
-@RepositoryRestResource(collectionResourceRel = "productCategory", path = "product-category")
+@RepositoryRestResource(collectionResourceRel = "Category", path = "category")
 public interface ProductCategoryRepository extends JpaRepository<ProductCategory, Long> {
 
-    Page<ProductCategory> findByCategoryNameContainingIgnoreCase(String key,  Pageable pageable);
+    Page<ProductCategory> findByCategoryName(@RequestParam("name") String name, Pageable pageable);
     
 }

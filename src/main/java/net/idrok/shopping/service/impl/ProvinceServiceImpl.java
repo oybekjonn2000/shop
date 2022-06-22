@@ -18,12 +18,12 @@ public class ProvinceServiceImpl implements ProvinceService {
 
     @Override
     public Page<Province> getAll(Pageable pageable, String key) {
-        return provinceRepository.findByCode(key, pageable);
+        return provinceRepository.findAllByNameContainingIgnoreCase(key, pageable);
     }
 
     @Override
     public Province getById(Long id) {
-        return provinceRepository.findById(id).orElseThrow(()->new RuntimeException("not found"));
+        return provinceRepository.findById(id).get();
     }
 
     @Override

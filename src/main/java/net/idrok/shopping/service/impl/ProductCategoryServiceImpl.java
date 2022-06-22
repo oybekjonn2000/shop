@@ -13,8 +13,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
     @Autowired
     ProductCategoryRepository productCategoryRepository;
 
-    public Page<ProductCategory> getAll(Pageable pageable, String key) {
-        return productCategoryRepository.findByCategoryNameContainingIgnoreCase(key, pageable);
+    public Page<ProductCategory> getAll(Pageable pageable, String name) {
+        return productCategoryRepository.findByCategoryName(name, pageable);
     }
 
     public ProductCategory getById(Long id) {

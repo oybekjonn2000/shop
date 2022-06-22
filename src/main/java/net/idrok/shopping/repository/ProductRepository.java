@@ -16,7 +16,7 @@ import javax.transaction.Transactional;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findByCategoryId(@RequestParam("id") Long id, Pageable pageable);
-    Page<Product> findByNameContainingIgnoreCase(String key,  Pageable pageable);
+    Page<Product> findByNameContainingIgnoreCase(@RequestParam("name") String name, Pageable pageable);
 
     
 

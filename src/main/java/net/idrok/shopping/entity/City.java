@@ -1,25 +1,40 @@
 package net.idrok.shopping.entity;
 
-import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name="city")
-
-@Data
 public class City {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
     private Long id;
-
-    @Column(name="name")
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="province")
     private Province province;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Province getProvince() {
+        return province;
+    }
+
+    public void setProvince(Province province) {
+        this.province = province;
+    }
 }

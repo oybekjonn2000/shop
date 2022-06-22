@@ -11,5 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface CityRepository extends JpaRepository<City, Long> {
 
     Page<City> findByProvinceCode(@Param("code") String code, Pageable pageable);
+    Page<City> findByNameContainingIgnoreCase( String k1, Pageable pageable);
 
 }

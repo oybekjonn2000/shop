@@ -1,33 +1,41 @@
 package net.idrok.shopping.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name="province")
-@Getter
-@Setter
 public class Province {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
     private Long id;
-
-    @Column(name="code")
     private String code;
-
-
-    @Column(name="name")
     private String name;
 
-    @OneToMany(mappedBy="province")
-    @JsonIgnore
-    private List<City> cities;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 
 }
