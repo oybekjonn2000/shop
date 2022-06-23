@@ -48,6 +48,7 @@ public class User {
     @ManyToOne
     private  Fayl image;
 
+
     public String getPhoneNumber() {
         return phoneNumber;
     }

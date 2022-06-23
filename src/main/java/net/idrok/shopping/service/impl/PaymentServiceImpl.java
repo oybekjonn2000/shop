@@ -1,6 +1,5 @@
 package net.idrok.shopping.service.impl;
 
-import net.idrok.shopping.entity.Fayl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

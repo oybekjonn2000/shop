@@ -9,7 +9,8 @@ public interface CommonService<T> {
      * bu metod bazadan barcha entity~larni o'qib olishga mo'ljallangan
      * 
      * @param pageable
-     * @return key
+     * @param s
+         * @return key
      */
     public Page<T> getAll(Pageable pageable, String key);
 

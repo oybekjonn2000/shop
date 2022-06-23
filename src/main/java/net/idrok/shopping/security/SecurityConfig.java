@@ -47,13 +47,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http = http.cors().and().csrf().disable();
         // Barcha so'rovlar yopish
         http.authorizeRequests()
-
+                .antMatchers("/api/**").permitAll()
 
                 .antMatchers(HttpMethod.POST, "/api/account/auth").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/account/register").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/checkout/**").permitAll()
 
-                .antMatchers("/api/**").permitAll()
+
 
                 .antMatchers( "/api/file/**").permitAll()
 

@@ -20,9 +20,9 @@ public class ProductCategoryController {
     }
 
     @GetMapping()
-    public ResponseEntity<Page<ProductCategory>> getAll(@RequestParam(name="name", required = false) String name, Pageable pageable){
-
-        return ResponseEntity.ok(productCategoryService.getAll(pageable, name));
+    public ResponseEntity<Page<ProductCategory>> getAll(@RequestParam(value = "key", required = false) String key,  Pageable pageable){
+        if(key==null) key = "";
+        return ResponseEntity.ok(productCategoryService.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")

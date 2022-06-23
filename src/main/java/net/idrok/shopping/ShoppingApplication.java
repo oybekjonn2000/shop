@@ -43,7 +43,8 @@ public class ShoppingApplication {
 
 		if(userRepository.findByLogin("admin123").isEmpty()){
 			User user = new User();
-			user.setFirstName("Adminstration");
+			user.setFirstName("oybek");
+			user.setLastName("botirov");
 			user.setLogin("admin123");
 			user.setPassword(encoder.encode("admin123"));
 			user.setActive(true);
