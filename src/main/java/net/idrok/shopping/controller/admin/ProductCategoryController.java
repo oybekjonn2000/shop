@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/api/category")
+@RequestMapping("/api/products-category")
 @CrossOrigin(maxAge = 3600)
 public class ProductCategoryController {
     private final

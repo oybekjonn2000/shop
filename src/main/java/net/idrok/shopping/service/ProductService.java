@@ -1,11 +1,11 @@
 package net.idrok.shopping.service;
 
 import net.idrok.shopping.entity.Product;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ProductService extends CommonService<Product> {
 
 
-   List<Product> getByCategoryId( Long categoryId);
+    Page<Product> getByCategoryId(Long id, Pageable pageable);
 }

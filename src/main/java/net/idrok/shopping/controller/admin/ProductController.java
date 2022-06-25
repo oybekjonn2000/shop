@@ -7,10 +7,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping(value = "/api/product")
+@RequestMapping(value = "/api/products")
 @CrossOrigin(maxAge = 3600)
 
 public class ProductController {
@@ -27,10 +25,7 @@ public class ProductController {
         if(key==null) key = "";
         return ResponseEntity.ok(productService.getAll(pageable, key));
     }
-    @GetMapping("/category")
-    public ResponseEntity<List<Product>> getAllCategoryId(@RequestParam(name="id", required = false) Long categoryId){
-        return ResponseEntity.ok(productService.getByCategoryId(categoryId));
-    }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getById(@PathVariable Long id){
@@ -54,7 +49,10 @@ public class ProductController {
     }
 
     //get by category id
-
+    @GetMapping("/search/findByCategoryId")
+    public ResponseEntity<Page<Product>> getByCategoryId(@RequestParam(name="id", required = false)  Long id, Pageable pageable){
+        return ResponseEntity.ok(productService.getByCategoryId(id, pageable));
+    }
 
 
 }
