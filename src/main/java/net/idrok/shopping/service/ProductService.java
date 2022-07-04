@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 public interface ProductService extends CommonService<Product> {
 
 
-    Page<Product> getByCategoryId(Long id, Pageable pageable);
+    Page<Product> getByCategoryId(Long id,  Pageable pageable);
 }

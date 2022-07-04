@@ -49,9 +49,9 @@ public class ProductController {
     }
 
     //get by category id
-    @GetMapping("/search/findByCategoryId")
-    public ResponseEntity<Page<Product>> getByCategoryId(@RequestParam(name="id", required = false)  Long id, Pageable pageable){
-        return ResponseEntity.ok(productService.getByCategoryId(id, pageable));
+    @GetMapping("/findByCategoryId")
+    public ResponseEntity<Page<Product>> getByCategoryId(@RequestParam(name="id", required = false)   Long id, Pageable pageable){
+        return ResponseEntity.ok(productService.getByCategoryId(id,  pageable));
     }
 
 
