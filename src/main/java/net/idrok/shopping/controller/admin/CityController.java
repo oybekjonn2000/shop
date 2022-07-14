@@ -45,4 +45,10 @@ public class CityController {
         cityService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/findByProvinceCode")
+    public ResponseEntity<Page<City>> getByProvinceCode(@RequestParam(name="code", required = false) String code,   Pageable pageable){
+        return ResponseEntity.ok(cityService.findByProvinceCode(code, pageable));
+    }
+
 }

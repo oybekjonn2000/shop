@@ -47,4 +47,9 @@ public class CityServiceImpl implements CityService {
     public void deleteById(Long entityId) {
         cityRepository.deleteById(entityId);
     }
+
+    @Override
+    public Page<City> findByProvinceCode(String code, Pageable pageable) {
+        return cityRepository.findByProvinceCode(code, pageable);
+    }
 }
