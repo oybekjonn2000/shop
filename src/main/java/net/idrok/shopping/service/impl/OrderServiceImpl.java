@@ -42,5 +42,9 @@ public class OrderServiceImpl implements OrderService{
     public void deleteById(Long bmId) {
         orderRepository.deleteById(bmId);
     }
-    
+
+    @Override
+    public Page<Order> findByCustomerEmailOrderByDateCreatedDesc(String email, Pageable pageable) {
+        return orderRepository.findByCustomerEmailOrderByDateCreatedDesc(email, pageable);
+    }
 }

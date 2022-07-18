@@ -1,4 +1,5 @@
 package net.idrok.shopping.controller.admin;
+import net.idrok.shopping.entity.Product;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -56,6 +57,12 @@ public class OrderController {
     public ResponseEntity<?> delete(@PathVariable Long id){
         orderSvc.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+
+    @GetMapping("/findByCustomerEmailOrderByDateCreatedDesc")
+    public ResponseEntity<Page<Order>> findByCustomerEmailOrderByDateCreatedDesc(@RequestParam(name="email", required = false)   String email, Pageable pageable){
+        return ResponseEntity.ok(orderSvc.findByCustomerEmailOrderByDateCreatedDesc(email,  pageable));
     }
 
     
