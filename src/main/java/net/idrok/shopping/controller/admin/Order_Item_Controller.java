@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import net.idrok.shopping.entity.OrderItem;
-import net.idrok.shopping.service.OrderItemService;
+import net.idrok.shopping.entity.Order_Item;
+import net.idrok.shopping.service.Order_Item_Service;
 
 
 
@@ -21,33 +21,31 @@ import net.idrok.shopping.service.OrderItemService;
 @RequestMapping("/api/orderitem")
 @CrossOrigin(maxAge = 3600)
 
-public class OrderItemContoller {
+public class Order_Item_Controller {
 
-    private final
-    OrderItemService orderItemSVC;
-
-    public OrderItemContoller(OrderItemService orderItemSVC) {
+    private final Order_Item_Service orderItemSVC;
+    public Order_Item_Controller(Order_Item_Service orderItemSVC) {
         this.orderItemSVC = orderItemSVC;
     }
 
     @GetMapping()
-    public ResponseEntity<Page<OrderItem>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
+    public ResponseEntity<Page<Order_Item>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
         if(key==null) key = "";
         return ResponseEntity.ok(orderItemSVC.getAll(pageable, key));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderItem> getById(@PathVariable Long id){
+    public ResponseEntity<Order_Item> getById(@PathVariable Long id){
         return ResponseEntity.ok(orderItemSVC.getById(id));
     }
 
     @PostMapping()
-    public ResponseEntity<OrderItem> create(@RequestBody OrderItem bm){
+    public ResponseEntity<Order_Item> create(@RequestBody Order_Item bm){
         return ResponseEntity.ok( orderItemSVC.create(bm));
     }
 
     @PutMapping()
-    public ResponseEntity<OrderItem> update(@RequestBody OrderItem bm){
+    public ResponseEntity<Order_Item> update(@RequestBody Order_Item bm){
         return ResponseEntity.ok(orderItemSVC.update(bm));
     }
 

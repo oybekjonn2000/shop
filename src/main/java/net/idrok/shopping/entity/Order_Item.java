@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-public class OrderItem {
+public class Order_Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

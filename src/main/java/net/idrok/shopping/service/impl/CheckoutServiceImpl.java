@@ -5,7 +5,7 @@ import net.idrok.shopping.dto.Purchase;
 import net.idrok.shopping.dto.PurchaseResponse;
 import net.idrok.shopping.entity.Customer;
 import net.idrok.shopping.entity.Order;
-import net.idrok.shopping.entity.OrderItem;
+import net.idrok.shopping.entity.Order_Item;
 import net.idrok.shopping.repository.CustomerRepository;
 import net.idrok.shopping.service.CheckoutService;
 import org.springframework.stereotype.Service;
@@ -37,7 +37,7 @@ public class CheckoutServiceImpl implements CheckoutService {
         order.setOrderTrackingNumber(orderTrackingNumber);
 
         //populate order with orderItems
-        Set<OrderItem> orderItems = purchase.getOrderItems();
+        Set<Order_Item> orderItems = purchase.getOrderItems();
         orderItems.forEach(item-> order.add(item));
 
         //populate order with BillingAddress and Shipping Address

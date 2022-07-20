@@ -4,7 +4,7 @@ package net.idrok.shopping.dto;
 import net.idrok.shopping.entity.Address;
 import net.idrok.shopping.entity.Customer;
 import net.idrok.shopping.entity.Order;
-import net.idrok.shopping.entity.OrderItem;
+import net.idrok.shopping.entity.Order_Item;
 
 import java.util.Set;
 
@@ -19,7 +19,7 @@ public class Purchase {
 
     private Order order;
 
-    private Set<OrderItem> orderItems;
+    private Set<Order_Item> orderItems;
 
     public Customer getCustomer() {
         return customer;
@@ -53,11 +53,11 @@ public class Purchase {
         this.order = order;
     }
 
-    public Set<OrderItem> getOrderItems() {
+    public Set<Order_Item> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(Set<OrderItem> orderItems) {
+    public void setOrderItems(Set<Order_Item> orderItems) {
         this.orderItems = orderItems;
     }
 }
