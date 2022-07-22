@@ -64,4 +64,11 @@ productRepository.delete(entity);
     public Page<Product> getByCategoryId(Long id,  Pageable pageable) {
         return productRepository.findByCategoryId(id,  pageable);
     }
+
+    @Override
+    public Page<Product> getByDiscountPercent(Long percent, Pageable pageable) {
+        return productRepository.findByDiscountPercent(percent, pageable);
+    }
+
+
 }

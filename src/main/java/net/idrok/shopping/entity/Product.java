@@ -28,6 +28,16 @@ public class Product {
     @ManyToOne
     private Brand brand;
 
+    @ManyToOne
+    private Discount discount;
+
+    public Discount getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
+    }
 
     private String description;
 

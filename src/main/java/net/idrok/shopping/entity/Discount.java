@@ -13,13 +13,11 @@ public class Discount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(unique = true, nullable = false, length = 100)
     private String name;
-
-    private String percent;
-
+    private Long percent;
     private String info;
+
 
     public Long getId() {
         return id;
@@ -37,11 +35,11 @@ public class Discount {
         this.name = name;
     }
 
-    public String getPercent() {
+    public Long getPercent() {
         return percent;
     }
 
-    public void setPercent(String percent) {
+    public void setPercent(Long percent) {
         this.percent = percent;
     }
 
@@ -52,14 +50,4 @@ public class Discount {
     public void setInfo(String info) {
         this.info = info;
     }
-
-
-    
-
-  
-   
-
-    
-
-    
 }
