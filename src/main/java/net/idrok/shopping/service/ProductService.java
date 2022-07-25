@@ -8,5 +8,5 @@ public interface ProductService extends CommonService<Product> {
 
 
     Page<Product> getByCategoryId(Long id,  Pageable pageable);
-    Page<Product> getByDiscountPercent(Long percent,  Pageable pageable);
+    Page<Product> getByDiscountPercent(String percent,  Pageable pageable);
 }

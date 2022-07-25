@@ -66,7 +66,7 @@ productRepository.delete(entity);
     }
 
     @Override
-    public Page<Product> getByDiscountPercent(Long percent, Pageable pageable) {
+    public Page<Product> getByDiscountPercent(String percent, Pageable pageable) {
         return productRepository.findByDiscountPercent(percent, pageable);
     }
 

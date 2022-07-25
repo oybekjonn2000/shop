@@ -56,7 +56,7 @@ public class ProductController {
 
     //get by discounts percent
     @GetMapping("/findByDiscountPercent")
-    public ResponseEntity<Page<Product>> getByDiscountPercent(@RequestParam(name="percent", required = false)   Long percent, Pageable pageable){
+    public ResponseEntity<Page<Product>> getByDiscountPercent(@RequestParam(name="percent", required = false)   String percent, Pageable pageable){
         return ResponseEntity.ok(productService.getByDiscountPercent(percent,  pageable));
     }
 
