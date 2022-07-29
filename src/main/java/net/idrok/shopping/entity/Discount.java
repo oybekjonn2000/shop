@@ -1,8 +1,6 @@
 package net.idrok.shopping.entity;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,10 +11,7 @@ public class Discount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true, nullable = false, length = 100)
-    private String name;
-    private Long percent;
-    private String info;
+    private String percent;
 
 
     public Long getId() {
@@ -27,27 +22,11 @@ public class Discount {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getPercent() {
+    public String getPercent() {
         return percent;
     }
 
-    public void setPercent(Long percent) {
+    public void setPercent(String percent) {
         this.percent = percent;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
     }
 }
