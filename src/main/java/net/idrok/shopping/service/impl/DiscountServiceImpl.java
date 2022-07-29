@@ -3,7 +3,6 @@ package net.idrok.shopping.service.impl;
 import net.idrok.shopping.entity.Discount;
 import net.idrok.shopping.repository.DiscountRepository;
 import net.idrok.shopping.service.DiscountService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -13,11 +12,16 @@ public class DiscountServiceImpl implements DiscountService{
 
 
     
-    @Autowired
-    DiscountRepository discountRepository;
+
+   private final DiscountRepository discountRepository;
+
+    public DiscountServiceImpl(DiscountRepository discountRepository) {
+        this.discountRepository = discountRepository;
+    }
+
 
     public Page<Discount> getAll(Pageable pageable, String key) {
-        return discountRepository.findByNameOrPercentContainingIgnoreCase(key,key,  pageable);
+        return discountRepository.findByNameContainingIgnoreCase(key,  pageable);
     }
 
     public Discount getById(Long id) {
