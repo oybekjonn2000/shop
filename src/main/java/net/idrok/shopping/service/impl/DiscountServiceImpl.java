@@ -21,7 +21,7 @@ public class DiscountServiceImpl implements DiscountService{
 
 
     public Page<Discount> getAll(Pageable pageable, String key) {
-        return discountRepository.findByNameContainingIgnoreCase(key,  pageable);
+        return discountRepository.findByPercentContainingIgnoreCase(key,  pageable);
     }
 
     public Discount getById(Long id) {

@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import net.idrok.shopping.entity.Discount;
 
 public interface DiscountRepository extends JpaRepository<Discount, Long>{
-    Page<Discount> findByNameContainingIgnoreCase(String k1,   Pageable pageable);
+    Page<Discount> findByPercentContainingIgnoreCase(String k1,   Pageable pageable);
 
 }
