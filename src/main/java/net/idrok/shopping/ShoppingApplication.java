@@ -41,12 +41,12 @@ public class ShoppingApplication {
 	@PostConstruct
 	public void definePrimaryAdmin(){
 
-		if(userRepository.findByLogin("admin123").isEmpty()){
+		if(userRepository.findByLogin("admin").isEmpty()){
 			User user = new User();
 			user.setFirstName("oybek");
 			user.setLastName("botirov");
-			user.setLogin("admin123");
-			user.setPassword(encoder.encode("admin123"));
+			user.setLogin("admin");
+			user.setPassword(encoder.encode("Highskill96967"));
 			user.setActive(true);
 			user.setRegTime(LocalDateTime.now());
 			user.setRole(Role.ADMIN);
