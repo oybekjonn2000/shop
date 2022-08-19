@@ -45,7 +45,7 @@ public class ShoppingApplication {
 			User user = new User();
 			user.setFirstName("oybek");
 			user.setLastName("botirov");
-			user.setLogin("admin");
+			user.setLogin("admin1");
 			user.setPassword(encoder.encode("Highskill96967"));
 			user.setActive(true);
 			user.setRegTime(LocalDateTime.now());
