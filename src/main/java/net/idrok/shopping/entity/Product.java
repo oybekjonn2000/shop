@@ -5,6 +5,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 public class Product {
@@ -12,39 +13,49 @@ public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
     private  ProductCategory category;
-
-
     private String sku;
-
-
     private String name;
-
     @ManyToOne
     private Brand brand;
-
     @ManyToOne
     private Discount discount;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "product_images",
+            joinColumns = {
+                @JoinColumn(name = "product_id")
+            },
+            inverseJoinColumns = {
+                @JoinColumn(name = "image_id")
+    }
+    )
+    private Set<ImageModel> productImages;
+
+    public Set<ImageModel> getProductImages() {
+        return productImages;
+    }
+
+    public void setProductImages(Set<ImageModel> productImages) {
+        this.productImages = productImages;
+    }
 
     public Discount getDiscount() {
         return discount;
     }
-
     public void setDiscount(Discount discount) {
         this.discount = discount;
     }
-
     private String description;
 
 
     private Long unitPrice;
 
-    private String imageUrl;
+
 
     private boolean active;
 
@@ -113,13 +124,7 @@ public class Product {
         this.unitPrice = unitPrice;
     }
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 
     public boolean isActive() {
         return active;
