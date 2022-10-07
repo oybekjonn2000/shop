@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -51,6 +52,15 @@ public class ProductController {
         return imageModels;
     }
 
+    @GetMapping(value = {"/getAllProducts"})
+    public List<Product> getAllProducts(){
+       return productService.getAllProducts();
+    }
+
+    @DeleteMapping(value = {"/delete/{id}"})
+    public void deleteProduct(@PathVariable("id") Long id){
+        productService.delete(id);
+    }
 
 
    }
