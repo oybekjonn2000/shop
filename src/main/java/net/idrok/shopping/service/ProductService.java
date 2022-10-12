@@ -25,6 +25,10 @@ public class ProductService  {
     public void delete(Long id){
         productRepository.deleteById(id);
     }
+
+    public Product getProductDetails(Long id){
+      return   productRepository.findById(id).get();
+    }
 //    Page<Product> getByCategoryId(Long id,  Pageable pageable);
 //    Page<Product> getByDiscountPercent(String percent,  Pageable pageable);
 }
