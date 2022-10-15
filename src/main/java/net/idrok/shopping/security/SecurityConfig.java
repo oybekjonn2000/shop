@@ -51,15 +51,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(HttpMethod.POST, "/api/account/auth").permitAll()
                 .antMatchers(HttpMethod.POST, "/api/account/register").permitAll()
-                .antMatchers(HttpMethod.POST, "/api/checkout").permitAll()
-                .antMatchers(HttpMethod.GET ,"/api/products").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/checkout/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/products/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/products/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/brand").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/province").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/city").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/products-category").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/order").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/orderitem").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/customer").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/province/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/city/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/products-category/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/order/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/orderitem/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/customer/**").permitAll()
 
 
 
@@ -69,8 +70,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // User huquqlari
                 .antMatchers("/api/user/**").permitAll()
                 .antMatchers("/api/account/**").authenticated()
-
                 //admin
+
                 .anyRequest().hasAnyAuthority(Role.ADMIN.toString())
                 .and()
                 .sessionManagement()
