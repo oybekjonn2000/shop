@@ -24,19 +24,6 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-
-
-    @GetMapping(value = {"/getAllProducts"})
-    public List<Product> getAllProducts(){
-       return productService.getAllProducts();
-    }
-
-
-
-    @GetMapping({"/getProductDetails/{id}"})
-    public Product getProductDetails(@PathVariable("id") Long id){
-        return productService.getProductDetails(id);
-    }
     @PostMapping( value = {"/addNewProduct"}, consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public Product addNewProduct(@RequestPart("product") Product product,
                                  @RequestPart("imageFile") MultipartFile[] file ) {
@@ -48,7 +35,7 @@ public class ProductController {
             return productService.addNewProduct(product);
         } catch (Exception e){
             System.out.println(e.getMessage());
-            return null;
+        return null;
         }
     }
 
@@ -60,14 +47,20 @@ public class ProductController {
                     file.getContentType(),
                     file.getBytes()
             );
-            imageModels.add(imageModel);
+               imageModels.add(imageModel);
         }
         return imageModels;
+    }
+
+    @GetMapping(value = {"/getAllProducts"})
+    public List<Product> getAllProducts(){
+       return productService.getAllProducts();
     }
 
     @DeleteMapping(value = {"/delete/{id}"})
     public void deleteProduct(@PathVariable("id") Long id){
         productService.delete(id);
     }
+
 
    }
