@@ -15,15 +15,15 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @ManyToOne
-//    @JoinColumn(name = "category_id", nullable = false)
-//    private  ProductCategory category;
-
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private  ProductCategory category;
+    private String sku;
     private String name;
-//    @ManyToOne
-//    private Brand brand;
-//    @ManyToOne
-//    private Discount discount;
+    @ManyToOne
+    private Brand brand;
+    @ManyToOne
+    private Discount discount;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "product_images",
@@ -35,15 +35,6 @@ public class Product {
     }
     )
     private Set<ImageModel> productImages;
-    private String description;
-    private Double unitPrice;
-    private boolean active;
-    private int unitsInStock;
-//    @CreationTimestamp
-//    private LocalDateTime dateCreated;
-//    @UpdateTimestamp
-//    private LocalDateTime lastUpdated;
-
 
     public Set<ImageModel> getProductImages() {
         return productImages;
@@ -51,6 +42,38 @@ public class Product {
 
     public void setProductImages(Set<ImageModel> productImages) {
         this.productImages = productImages;
+    }
+
+    public Discount getDiscount() {
+        return discount;
+    }
+    public void setDiscount(Discount discount) {
+        this.discount = discount;
+    }
+    private String description;
+
+
+    private Long unitPrice;
+
+
+
+    private boolean active;
+
+    private int unitsInStock;
+
+    @CreationTimestamp
+    private LocalDateTime dateCreated;
+
+    @UpdateTimestamp
+    private LocalDateTime lastUpdated;
+
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
     public Long getId() {
@@ -61,7 +84,21 @@ public class Product {
         this.id = id;
     }
 
+    public ProductCategory getCategory() {
+        return category;
+    }
 
+    public void setCategory(ProductCategory category) {
+        this.category = category;
+    }
+
+    public String getSku() {
+        return sku;
+    }
+
+    public void setSku(String sku) {
+        this.sku = sku;
+    }
 
     public String getName() {
         return name;
@@ -71,7 +108,6 @@ public class Product {
         this.name = name;
     }
 
-
     public String getDescription() {
         return description;
     }
@@ -80,13 +116,15 @@ public class Product {
         this.description = description;
     }
 
-    public Double getUnitPrice() {
+    public Long getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(Double unitPrice) {
+    public void setUnitPrice(Long unitPrice) {
         this.unitPrice = unitPrice;
     }
+
+
 
     public boolean isActive() {
         return active;
@@ -104,19 +142,19 @@ public class Product {
         this.unitsInStock = unitsInStock;
     }
 
-//    public LocalDateTime getDateCreated() {
-//        return dateCreated;
-//    }
-//
-//    public void setDateCreated(LocalDateTime dateCreated) {
-//        this.dateCreated = dateCreated;
-//    }
-//
-//    public LocalDateTime getLastUpdated() {
-//        return lastUpdated;
-//    }
-//
-//    public void setLastUpdated(LocalDateTime lastUpdated) {
-//        this.lastUpdated = lastUpdated;
-//    }
+    public LocalDateTime getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(LocalDateTime dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
 }
