@@ -58,9 +58,6 @@ public class UserServiceImpl implements UserService {
         u.setFirstName(entity.getFirstName());
         u.setLastName(entity.getLastName());
         u.setImage(entity.getImage());
-
-
-
         return  userRepository.save(u);
     }
 
