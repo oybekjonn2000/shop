@@ -4,7 +4,6 @@ import net.idrok.shopping.entity.Fayl;
 import net.idrok.shopping.service.FileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
@@ -18,11 +17,13 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 
 @RestController
-@RequestMapping("/api/file")
+@RequestMapping("/api/fayl")
 public class FileController {
-    private Logger logger = LoggerFactory.getLogger((FileController.class.getName()));
+    private final Logger logger = LoggerFactory.getLogger((FileController.class.getName()));
 
     private String ROOT_DIRECTORY="files";
+
+
 
     @Value("${system.root-directory}")
     private  void setDirectory (String url){
@@ -30,8 +31,11 @@ public class FileController {
 
     }
 
-    @Autowired
-    FileService fileService;
+
+    private final  FileService fileService;
+    public FileController(FileService fileService) {
+        this.fileService = fileService;
+    }
 
     @GetMapping()
     public ResponseEntity<Page<Fayl>> getAll(@RequestParam(name="key", required = false) String key, Pageable pageable){
@@ -64,7 +68,7 @@ public class FileController {
               return ResponseEntity.ok()
                       .headers(headers)
                       .contentLength(file.length())
-                      .contentType(MediaType.parseMediaType(f.getType()))
+                      .contentType(mediaType)
                       .body(resource);
 
           } catch (FileNotFoundException e) {

@@ -1,40 +1,36 @@
 package net.idrok.shopping;
-
-import io.jsonwebtoken.*;
-
-import net.idrok.shopping.entity.Role;
-import net.idrok.shopping.entity.User;
+import net.idrok.shopping.entity.*;
 import net.idrok.shopping.repository.UserRepository;
 import net.idrok.shopping.security.JwtUtil;
-import org.slf4j.ILoggerFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import javax.annotation.PostConstruct;
-import javax.crypto.SecretKey;
-import java.security.KeyPair;
-import java.time.Instant;
+
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 @SpringBootApplication
 public class ShoppingApplication {
+
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(ShoppingApplication.class, args);
 
 		
 	}
-	@Autowired
-	UserRepository userRepository;
 
-	@Autowired
-	PasswordEncoder encoder;
+	 private final UserRepository userRepository;
+	public ShoppingApplication(UserRepository userRepository, PasswordEncoder encoder, JwtUtil jwtUtil) {
+		this.userRepository = userRepository;
+		this.encoder = encoder;
+		this.jwtUtil = jwtUtil;
+	}
+
+	private final PasswordEncoder encoder;
 
 	final Logger LOG = LoggerFactory.getLogger(ShoppingApplication.class.getName());
 
@@ -46,11 +42,18 @@ public class ShoppingApplication {
 			user.setFirstName("oybek");
 			user.setLastName("botirov");
 			user.setLogin("admin123");
-			user.setPassword(encoder.encode("Highskill96967"));
+			user.setPassword(encoder.encode("admin123"));
 			user.setActive(true);
 			user.setRegTime(LocalDateTime.now());
 			user.setRole(Role.ADMIN);
 			userRepository.save(user);
+
+			ProductCategory productCategory = new ProductCategory();
+			productCategory.setCategoryName("telefon");
+			Discount discount = new Discount();
+			discount.setPercent("50");
+			Brand brand = new Brand();
+			brand.setName("samsung");
 
 
 
@@ -58,8 +61,8 @@ public class ShoppingApplication {
 
 
 	}
-	@Autowired
-	JwtUtil jwtUtil;
+
+	private final JwtUtil jwtUtil;
 
 	@PostConstruct
 	public  void JWTsinov(){

@@ -4,12 +4,14 @@ import net.idrok.shopping.entity.Fayl;
 
 import net.idrok.shopping.repository.FileRepository;
 import net.idrok.shopping.service.FileService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+
 
 @Service
-public abstract class FileServiceImpl implements FileService {
+public  class FileServiceImpl implements FileService {
 
     private final FileRepository fileRepository;
 
@@ -17,11 +19,11 @@ public abstract class FileServiceImpl implements FileService {
         this.fileRepository = fileRepository;
     }
 
-    @Override
-    public List<Fayl> getAll(String key) {
-        return fileRepository.findAll();
-    }
 
+    @Override
+    public Page<Fayl> getAll(Pageable pageable, String key) {
+        return (Page<Fayl>) fileRepository.findAll();
+    }
 
     @Override
     public Fayl getById(Long id) {

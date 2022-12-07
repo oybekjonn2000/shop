@@ -30,6 +30,7 @@ public class BrandServiceImpl implements BrandService {
     @Override
     public Brand create(Brand entity) {
         if(entity.getId()==null)
+
         return brandRepository.save(entity);
         throw  new RuntimeException("id must be null");
     }

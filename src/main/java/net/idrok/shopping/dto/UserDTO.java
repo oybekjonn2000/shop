@@ -33,7 +33,7 @@ public class UserDTO {
         this.login = user.getLogin();
         this.regTime = user.getRegTime();
         this.role = user.getRole();
-        this.rasm = user.getImage();
+        this.rasm = user.getRasm();
 
     }
 

@@ -63,7 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-                .antMatchers( "/api/file/**").permitAll()
+                .antMatchers( "/api/fayl/**").permitAll()
 
 
                 // User huquqlari

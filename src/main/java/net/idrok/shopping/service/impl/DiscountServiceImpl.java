@@ -30,6 +30,7 @@ public class DiscountServiceImpl implements DiscountService{
 
     public Discount create(Discount ch) {
         if (ch.getId() == null)
+
        return     discountRepository.save(ch);
         throw new RuntimeException("id null bolishi kerak");
     }

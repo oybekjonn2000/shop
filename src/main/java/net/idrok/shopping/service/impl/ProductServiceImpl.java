@@ -1,6 +1,7 @@
 package net.idrok.shopping.service.impl;
 
 import net.idrok.shopping.entity.Product;
+import net.idrok.shopping.entity.User;
 import net.idrok.shopping.repository.ProductRepository;
 import net.idrok.shopping.service.ProductService;
 import org.springframework.data.domain.Page;
