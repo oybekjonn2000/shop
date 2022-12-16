@@ -1,5 +1,8 @@
 package net.idrok.shopping;
 import net.idrok.shopping.entity.*;
+import net.idrok.shopping.repository.BrandRepository;
+import net.idrok.shopping.repository.DiscountRepository;
+import net.idrok.shopping.repository.ProductCategoryRepository;
 import net.idrok.shopping.repository.UserRepository;
 import net.idrok.shopping.security.JwtUtil;
 import org.slf4j.Logger;
@@ -24,10 +27,18 @@ public class ShoppingApplication {
 	}
 
 	 private final UserRepository userRepository;
-	public ShoppingApplication(UserRepository userRepository, PasswordEncoder encoder, JwtUtil jwtUtil) {
+	private final BrandRepository brandRepository;
+	private final ProductCategoryRepository productCategoryRepository;
+	private final DiscountRepository discountRepository;
+	public ShoppingApplication(UserRepository userRepository, BrandRepository brandRepository,  DiscountRepository discountRepository, PasswordEncoder encoder, JwtUtil jwtUtil,
+							   ProductCategoryRepository productCategoryRepository) {
 		this.userRepository = userRepository;
+		this.brandRepository = brandRepository;
+
+		this.discountRepository = discountRepository;
 		this.encoder = encoder;
 		this.jwtUtil = jwtUtil;
+		this.productCategoryRepository = productCategoryRepository;
 	}
 
 	private final PasswordEncoder encoder;
@@ -48,12 +59,6 @@ public class ShoppingApplication {
 			user.setRole(Role.ADMIN);
 			userRepository.save(user);
 
-			ProductCategory productCategory = new ProductCategory();
-			productCategory.setCategoryName("telefon");
-			Discount discount = new Discount();
-			discount.setPercent("50");
-			Brand brand = new Brand();
-			brand.setName("samsung");
 
 
 
@@ -63,6 +68,7 @@ public class ShoppingApplication {
 	}
 
 	private final JwtUtil jwtUtil;
+
 
 	@PostConstruct
 	public  void JWTsinov(){

@@ -31,11 +31,11 @@ public class Product {
 
     @ManyToOne
     private Discount discount;
+
     private String description;
     private Long unitPrice;
 
-    @ManyToOne
-    private Fayl productImage;
+
 
     private boolean active;
 
@@ -46,6 +46,10 @@ public class Product {
 
     @UpdateTimestamp
     private LocalDateTime lastUpdated;
+
+    @Column(name = "picByte", length = 1000)
+    private byte[] picByte;
+
 
 
 }

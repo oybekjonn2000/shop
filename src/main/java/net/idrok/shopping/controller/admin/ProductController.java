@@ -6,13 +6,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping(value = "/api/products")
 @CrossOrigin(maxAge = 3600)
 
 public class ProductController {
-
+    private byte[] bytes;
     private final ProductService productService;
 
     public ProductController(ProductService productService) {
@@ -29,12 +32,21 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getById(@PathVariable Long id){
+
         return ResponseEntity.ok(productService.getById(id));
     }
 
+    @PostMapping("/upload")
+    public void uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
+        this.bytes = file.getBytes();
+    }
+
     @PostMapping()
-    public ResponseEntity<Product> create(@RequestBody Product bm) {
+    public ResponseEntity<Product> create(@RequestBody Product bm)  {
+
         return ResponseEntity.ok(productService.create(bm));
+
+
     }
 
     @PutMapping()

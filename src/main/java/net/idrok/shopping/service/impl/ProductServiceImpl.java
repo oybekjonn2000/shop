@@ -14,8 +14,8 @@ import java.time.LocalDateTime;
 
 @Service
 @Transactional
- public class ProductServiceImpl implements ProductService {
-
+public class ProductServiceImpl implements ProductService {
+    private byte[] bytes;
     private final ProductRepository productRepository;
 
     public ProductServiceImpl(ProductRepository productRepository) {
@@ -34,36 +34,38 @@ import java.time.LocalDateTime;
 
     @Override
     public Product create(Product product) {
-        if (product.getId() == null){
+        if (product.getId() == null) {
             product.setDateCreated(LocalDateTime.now());
             product.setLastUpdated(LocalDateTime.now());
             product.setActive(true);
-            return  productRepository.save(product);
+            product.setPicByte(this.bytes);
+            return productRepository.save(product);
+
         }
         throw new RuntimeException("id null bolishi kerak");
     }
 
     @Override
     public Product update(Product entity) {
-        if(entity.getId()!=null)
+        if (entity.getId() != null)
             return productRepository.save(entity);
-        throw  new RuntimeException("id must not be null ");
+        throw new RuntimeException("id must not be null ");
     }
 
     @Override
     public void delete(Product entity) {
-productRepository.delete(entity);
+        productRepository.delete(entity);
     }
 
     @Override
     public void deleteById(Long entityId) {
-    productRepository.deleteById(entityId);
+        productRepository.deleteById(entityId);
     }
 
 
     @Override
-    public Page<Product> getByCategoryId(Long id,  Pageable pageable) {
-        return productRepository.findByCategoryId(id,  pageable);
+    public Page<Product> getByCategoryId(Long id, Pageable pageable) {
+        return productRepository.findByCategoryId(id, pageable);
     }
 
     @Override
