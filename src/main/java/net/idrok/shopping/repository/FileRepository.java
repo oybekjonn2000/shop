@@ -1,7 +1,9 @@
 package net.idrok.shopping.repository;
 
-import net.idrok.shopping.entity.Fayl;
 
+
+
+import net.idrok.shopping.entity.Fayl;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

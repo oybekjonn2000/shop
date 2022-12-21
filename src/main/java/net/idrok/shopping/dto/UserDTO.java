@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Id;
 
+
 import net.idrok.shopping.entity.Fayl;
 import net.idrok.shopping.entity.Role;
 import net.idrok.shopping.entity.User;

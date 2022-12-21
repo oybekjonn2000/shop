@@ -15,7 +15,7 @@ import java.io.IOException;
 @CrossOrigin(maxAge = 3600)
 
 public class ProductController {
-    private byte[] bytes;
+
     private final ProductService productService;
 
     public ProductController(ProductService productService) {
@@ -36,10 +36,7 @@ public class ProductController {
         return ResponseEntity.ok(productService.getById(id));
     }
 
-    @PostMapping("/upload")
-    public void uploadImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
-        this.bytes = file.getBytes();
-    }
+
 
     @PostMapping()
     public ResponseEntity<Product> create(@RequestBody Product bm)  {

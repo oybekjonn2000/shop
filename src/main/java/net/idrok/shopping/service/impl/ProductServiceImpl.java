@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @Service
 @Transactional
 public class ProductServiceImpl implements ProductService {
-    private byte[] bytes;
+
     private final ProductRepository productRepository;
 
     public ProductServiceImpl(ProductRepository productRepository) {
@@ -38,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
             product.setDateCreated(LocalDateTime.now());
             product.setLastUpdated(LocalDateTime.now());
             product.setActive(true);
-            product.setPicByte(this.bytes);
+            product.setRasm(product.getRasm());
             return productRepository.save(product);
 
         }
@@ -46,9 +46,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public Product update(Product entity) {
-        if (entity.getId() != null)
-            return productRepository.save(entity);
+    public Product update(Product product) {
+        product.setRasm(product.getRasm());
+        if (product.getId() != null)
+            return productRepository.save(product);
         throw new RuntimeException("id must not be null ");
     }
 

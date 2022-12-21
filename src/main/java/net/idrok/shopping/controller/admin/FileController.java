@@ -1,5 +1,6 @@
 package net.idrok.shopping.controller.admin;
 
+
 import net.idrok.shopping.entity.Fayl;
 import net.idrok.shopping.service.FileService;
 import org.slf4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import java.io.*;
 
@@ -50,7 +52,7 @@ public class FileController {
 
     @GetMapping("/download/{id}")
     public ResponseEntity<?> downloadFile(@PathVariable Long id){
-      Fayl f =fileService.getById(id);
+        Fayl f =fileService.getById(id);
 
       File file = new File(ROOT_DIRECTORY+"/"+f.getId()+"_"+f.getName());
       if(file.exists()){
@@ -80,7 +82,7 @@ public class FileController {
     }
 
     @PostMapping("/upload")
-    public ResponseEntity<Fayl> upload(@RequestParam("file")MultipartFile fayl) {
+    public ResponseEntity<Fayl> upload(@RequestParam("file") MultipartFile fayl) {
 
         Fayl f = new Fayl();
         f.setName(fayl.getOriginalFilename());
