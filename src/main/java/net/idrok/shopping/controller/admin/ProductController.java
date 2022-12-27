@@ -69,5 +69,10 @@ public class ProductController {
         return ResponseEntity.ok(productService.getByDiscountPercent(percent,  pageable));
     }
 
+    @GetMapping("/getByBrandId")
+    public ResponseEntity<Page<Product>> getByBrandId(@RequestParam(name="id", required = false)   Long id, Pageable pageable){
+        return ResponseEntity.ok(productService.getByBrandId(id,  pageable));
+    }
+
 
 }

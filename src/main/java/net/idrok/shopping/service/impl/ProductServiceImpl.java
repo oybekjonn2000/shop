@@ -3,6 +3,7 @@ package net.idrok.shopping.service.impl;
 import net.idrok.shopping.entity.Product;
 import net.idrok.shopping.entity.User;
 import net.idrok.shopping.repository.ProductRepository;
+import net.idrok.shopping.repository.ProvinceRepository;
 import net.idrok.shopping.service.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,9 +18,12 @@ import java.time.LocalDateTime;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
+    private final ProvinceRepository provinceRepository;
 
-    public ProductServiceImpl(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository,
+                              ProvinceRepository provinceRepository) {
         this.productRepository = productRepository;
+        this.provinceRepository = provinceRepository;
     }
 
     @Override
@@ -72,6 +76,11 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Page<Product> getByDiscountPercent(String percent, Pageable pageable) {
         return productRepository.findByDiscountPercent(percent, pageable);
+    }
+
+    @Override
+    public Page<Product> getByBrandId(Long id, Pageable pageable) {
+        return productRepository.findByBrandId(id, pageable);
     }
 
 

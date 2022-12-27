@@ -19,6 +19,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Page<Product> findByNameContainingIgnoreCase(@RequestParam("name") String name, Pageable pageable);
 
+    Page<Product> findByBrandId(@RequestParam("id") Long id, Pageable pageable);
+
+
 
 
 }
